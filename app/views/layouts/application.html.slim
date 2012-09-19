@@ -1,19 +1,41 @@
 doctype html
-html
-  head
-    meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1"
-    title= content_for?(:title) ? yield(:title) : "Conclave"
-	meta name="description" 
-	content=content_for?(:description) ? yield(:description) : "Conclave"
-    = stylesheet_link_tag :application, :media => "all"
-    = javascript_include_tag :application
-    = csrf_meta_tags
-    = yield(:head)
-  body
-    #container.container
-      header
-        = render 'layouts/navigation'
-        = render 'layouts/messages'
-      div#main role="main"
-        = yield
-      footer
+html lang="en"
+  	head
+    	meta charset="utf-8"
+    	meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    	meta name="viewport" content="width=device-width, initial-scale=1.0"
+    	title
+			= content_for?(:title) ? yield(:title) : "Conclave"
+    		= csrf_meta_tags 
+    	= stylesheet_link_tag "application", :media => "all"
+  	body
+		div class="navbar navbar-fixed-top"
+	      div class="navbar-inner"
+	        div class="container"
+	          a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse"
+	            span class="icon-bar"
+	            span class="icon-bar"
+	            span class="icon-bar"
+	          = link_to 'Conclave', root_path, :class => 'brand'
+	          div class="container nav-collapse"
+	            ul class="nav"
+					= render 'layouts/navigation'
+		
+	    div class="container"
+		  = render 'layouts/messages'	
+	      div class="content"
+	        div class="row"
+	           div class="span9"
+	              = yield
+            
+	           div class="span3"
+              
+          
+	      footer
+	        p &copy; CRB 2012
+
+
+	    /!-- Javascripts
+	    /!================================================== 
+	    /!-- Placed at the end of the document so the pages load faster
+	    = javascript_include_tag "application"

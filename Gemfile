@@ -10,6 +10,7 @@ gem 'cancan'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'activeadmin'
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   gem 'rspec'

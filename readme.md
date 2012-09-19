@@ -25,6 +25,9 @@ This project will start as a Rails application, but once approaching release we'
 * File Upload - [Paperclip][11]
 * Admin Panel - [ActiveAdmin][12]
 
+## Services
+* [Travis CI Status][15]
+* User Avatars - [Gravatar][16]
 
 [1]:http://heroku.com
 [2]:http://www.ruby-lang.org/en/
@@ -40,6 +43,8 @@ This project will start as a Rails application, but once approaching release we'
 [12]:http://activeadmin.info/
 [13]:http://rspec.info/
 [14]:http://cukes.info/
+[15]:http://travis-ci.org/#!/columbusrb/conclave
+[16]:http://gravatar.com
 
 ## How to contribute
 All contributions are welcome! Please follow these steps for easy contributions:

@@ -10,11 +10,16 @@ gem 'cancan'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'activeadmin'
+gem "twitter-bootstrap-rails"
 
 group :development, :test do
   gem 'rspec'
-  gem 'cucumber-rails'
+  gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
   gem 'pry'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'email_spec'
 end
 
 group :production do

@@ -99,4 +99,20 @@ describe User do
 
   end
 
+  describe "roles" do
+
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+
+    it "should have a role" do
+      @user.should respond_to(:role)
+    end
+
+    it "should be a contributor by default" do
+      @user.role.should == 'contributor'
+    end
+
+  end
+
 end

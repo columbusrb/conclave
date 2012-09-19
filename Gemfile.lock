@@ -270,6 +270,7 @@ DEPENDENCIES
   email_spec
   factory_girl_rails
   jquery-rails
+  meta_search (>= 1.1.0.pre)
   paperclip
   pg
   pry

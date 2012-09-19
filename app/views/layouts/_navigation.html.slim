@@ -10,3 +10,6 @@
 - else
 	li
 		= link_to 'Sign up', new_user_registration_path
+-if admin_signed_in?
+  li
+    = link_to 'Site Admin', admin_root_path

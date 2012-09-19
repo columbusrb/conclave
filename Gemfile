@@ -10,6 +10,7 @@ gem 'cancan'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'activeadmin'
+gem 'meta_search', ">= 1.1.0.pre"
 gem "twitter-bootstrap-rails"
 
 group :development, :test do

@@ -13,8 +13,12 @@ gem 'activeadmin'
 
 group :development, :test do
   gem 'rspec'
-  gem 'cucumber-rails'
+  gem 'rspec-rails'
+  gem 'cucumber-rails', :require => false
   gem 'pry'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'email_spec'
 end
 
 group :production do

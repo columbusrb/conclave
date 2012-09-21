@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120919175957) do
+ActiveRecord::Schema.define(:version => 20120921204724) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -27,6 +27,28 @@ ActiveRecord::Schema.define(:version => 20120919175957) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.integer  "parent_id"
+    t.text     "content"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "comments", ["conversation_id"], :name => "index_comments_on_conversation_id"
+
+  create_table "conversations", :force => true do |t|
+    t.string  "title"
+    t.integer "forum_id"
+  end
+
+  add_index "conversations", ["forum_id"], :name => "index_conversations_on_forum_id"
+
+  create_table "forums", :force => true do |t|
+    t.string "title"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",            :null => false

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :comments
+
   ROLES = %w[admin moderator contributor banned]
 
 

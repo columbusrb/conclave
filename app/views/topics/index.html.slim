@@ -1,0 +1,5 @@
+ul class="topics"
+  - @topics.each do |topic|
+    li
+      = link_to topic.name, topic_path(topic.slug)
+ 

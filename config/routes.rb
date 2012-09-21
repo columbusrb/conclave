@@ -1,5 +1,8 @@
 Conclave::Application.routes.draw do
 
+
+  resources :topics, only: [:index, :show]
+
   ActiveAdmin.routes(self)
 
   authenticated :user do

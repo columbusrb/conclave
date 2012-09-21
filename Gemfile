@@ -4,6 +4,7 @@ gem 'rails', '3.2.8'
 gem 'jquery-rails'
 gem 'sqlite3'
 gem 'slim'
+gem "slim-rails"
 gem 'simple_form'
 gem 'devise'
 gem 'cancan'
@@ -12,6 +13,9 @@ gem 'aws-sdk'
 gem 'activeadmin'
 gem 'meta_search', ">= 1.1.0.pre"
 gem "twitter-bootstrap-rails"
+gem "foreman"
+gem "unicorn"
+
 
 group :development, :test do
   gem 'rspec'

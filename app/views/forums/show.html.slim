@@ -4,8 +4,8 @@ div.page-header
   table.table.table-striped
   - @forum.conversations.each do |c|
     | <tr id="conversation_#{c.id}">
-    td = link_to c.title, forum_conversation_path(@forum, c)
-    td = c.comments.count
-    td = c.comments.first.created_at.strftime("%m/%d/%Y")
+    td =' link_to c.title, forum_conversation_path(@forum, c)
+    td #{pluralize(c.comments.count, "Comment")} 
+    td =' c.comments.first.created_at.strftime("%m/%d/%Y")
     | </tr>
 

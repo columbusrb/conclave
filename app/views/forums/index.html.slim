@@ -1,0 +1,5 @@
+div.page-header 
+  h1 Forums
+table.table.table-striped
+  - @forums.each do |f|
+    | <tr id="forum_#{f.id}"><td>#{f.title}</td></tr>

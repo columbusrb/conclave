@@ -1,6 +1,11 @@
 div.page-header 
   h1 Forums
-= link_to "New Conversation", new_forum_conversation_path(@forum), class: 'btn btn-primary'
-table.table.table-striped
+  = link_to "New Conversation", new_forum_conversation_path(@forum), class: 'btn btn-primary'
+  table.table.table-striped
   - @forum.conversations.each do |c|
-    | <tr id="conversation_#{c.id}"><td>#{c.title}</td></tr>
+    | <tr id="conversation_#{c.id}">
+    td =' link_to c.title, forum_conversation_path(@forum, c)
+    td #{pluralize(c.comments.count, "Comment")} 
+    td =' c.comments.first.created_at.strftime("%m/%d/%Y")
+    | </tr>
+

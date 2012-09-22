@@ -11,7 +11,8 @@ describe ForumsController do
 
   describe "GET 'show'" do
     it "returns http success" do
-      get 'show'
+      Forum.should_receive(:find).with("1").and_return(create(:forum))
+      get 'show', :id => 1
       response.should be_success
     end
   end

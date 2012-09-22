@@ -22,6 +22,19 @@ describe Conversation do
     end
   end
 
+  describe "accessible attributes" do
+    it "should allow :title" do
+      new_title = "Something Else"
+      @conversation.update_attributes({:title => new_title})
+      @conversation.title.should == new_title
+    end
+
+    it "should allow :forum_id" do
+      forum = FactoryGirl.create(:forum)
+      @conversation.update_attributes({:forum_id => forum.id})
+      @conversation.forum.should == forum
+    end
+  end
 
   it "should know about its original author" do
     u1 = FactoryGirl.create(:user)

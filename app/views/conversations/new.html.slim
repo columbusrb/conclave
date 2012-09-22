@@ -1,2 +1,10 @@
-h1 Conversations#new
-p Find me in app/views/conversations/new.html.slim
+.page-header 
+  h1 New Conversation
+= simple_form_for [@forum, @conversation], :html => {:class => 'form-horizontal'} do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :title, :required => true, :autofocus => true, :input_html => {:class => 'span9'}
+    = f.simple_fields_for @comment do |comment_form| 
+      = comment_form.input :content, :required => true, :input_html => {:class => 'span9'}
+  .form-actions.span9 
+    = f.button :submit, "Submit Conversation", :class => "btn btn-primary"

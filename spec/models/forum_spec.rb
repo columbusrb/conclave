@@ -2,23 +2,23 @@ require 'spec_helper'
 
 describe Forum do
   before do
-    @forum = FactoryGirl.create(:forum)
+    @forum = create(:forum)
   end
 
   it "should be valid" do
-    @forum.valid?.should be_true
+    @forum.should be_valid
   end
 
   describe "validations" do
     it "should require a :title" do
       @forum.title = nil
-      @forum.valid?.should_not be_true
+      @forum.should_not be_valid
     end
   end
 
   describe "associations" do
     it "should know about any related Conversations" do
-      @forum.conversations.should == []
+      @forum.conversations.should be_empty
     end
   end
 

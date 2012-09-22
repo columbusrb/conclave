@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Conversation do
   before do
-    @conversation = FactoryGirl.create(:conversation)
+    @conversation = create(:conversation)
   end
 
   it "should be valid" do
@@ -30,17 +30,17 @@ describe Conversation do
     end
 
     it "should allow :forum_id" do
-      forum = FactoryGirl.create(:forum)
+      forum = create(:forum)
       @conversation.update_attributes({:forum_id => forum.id})
       @conversation.forum.should == forum
     end
   end
 
   it "should know about its original author" do
-    u1 = FactoryGirl.create(:user)
-    u2 = FactoryGirl.create(:user)
-    c1 = FactoryGirl.create(:comment, :user => u1)
-    c2 = FactoryGirl.create(:comment, :user => u2)
+    u1 = create(:user)
+    u2 = create(:user)
+    c1 = create(:comment, :user => u1)
+    c2 = create(:comment, :user => u2)
     @conversation.comments << c1
     @conversation.comments << c2
 

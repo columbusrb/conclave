@@ -8,7 +8,7 @@ Conclave::Application.routes.draw do
   authenticated :user do
     root :to => 'home#index'
   end
-  root :to => "home#index"
+  root :to => "forums#index"
   devise_for :users
   resources :users, :only => [:show, :index]
   resources :forums, :only => [:show, :index]

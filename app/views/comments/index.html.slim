@@ -1,0 +1,6 @@
+.page-header
+  h1 #{@conversation.title}
+table.table.table-striped.table-bordered
+  - @comments.each do |comment|
+    = content_tag_for(:tr, comment) do
+      = comment.content

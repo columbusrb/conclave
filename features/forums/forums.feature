@@ -14,5 +14,3 @@ Feature: Forums
     When I visit the forums index page
     Then I should see a forum titled "On Topic"
   
-  
-  

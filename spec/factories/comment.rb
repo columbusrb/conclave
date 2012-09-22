@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :comment, class: Comment do
+  factory :comment do
     content "Comment Content"
-    association :conversation
-    association :user
+    conversation
+    user
   end
 end
 

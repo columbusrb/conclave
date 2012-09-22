@@ -1,2 +1,5 @@
-h1 Forums#show
-p Find me in app/views/forums/show.html.slim
+div.page-header 
+  h1 Forums
+table.table.table-striped
+  - @forum.conversations.each do |c|
+    | <tr id="conversation_#{c.id}"><td>#{c.title}</td></tr>

@@ -10,6 +10,11 @@ Feature: Conversations
     Given a forum and a conversation
     When I visit the forum show page
     Then I should see the conversation on the forum's show page
+    
+  Scenario: Show New Conversation Button
+    Given a forum
+    When I visit the forum show page
+    Then I should see a button labeled "New Conversation"
   
   
   

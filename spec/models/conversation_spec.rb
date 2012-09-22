@@ -5,9 +5,23 @@ describe Conversation do
     @conversation = FactoryGirl.create(:conversation)
   end
 
-  it "should know about any related Comments" do
-    @conversation.comments.should == []
+  it "should be valid" do
+    @conversation.valid?.should be_true
   end
+
+  describe "associations" do
+    it "should know about any related Comments" do
+      @conversation.comments.should == []
+    end
+  end
+
+  describe "validations" do
+    it "should require a Forum" do
+      @conversation.forum = nil
+      @conversation.valid?.should be_false
+    end
+  end
+
 
   it "should know about its original author" do
     u1 = FactoryGirl.create(:user)

@@ -1,4 +1,6 @@
 Conclave::Application.routes.draw do
+  get "comments/index"
+
   ActiveAdmin.routes(self)
 
   authenticated :user do
@@ -8,7 +10,10 @@ Conclave::Application.routes.draw do
   devise_for :users
   resources :users, :only => [:show, :index]
   resources :forums, :only => [:show, :index] do
-    resources :conversations, :only => [:new]
+    resources :conversations, :only => [:new, :create, :index]
+  end
+  resources :conversations, :except => [:new, :create, :index] do
+    resources :comments, :except => [:show]
   end
  
   # The priority is based upon order of creation:

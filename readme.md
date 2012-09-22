@@ -53,3 +53,6 @@ All contributions are welcome! Please follow these steps for easy contributions:
 2. Implement your code changes
 3. Test your changes -- I'm more concerned with testing the **intent** of your code, not it's **implementation**. If it's a smallish change, write a unit test or two. If it's a larger feature, we'll need a Cucumber scenario(s).
 4. Submit a Pull Request on Github!
+
+## Object Graph
+![Object Graph](https://www.evernote.com/shard/s122/sh/5d5d37dd-abd4-4602-9eb7-652bb0714722/62beb326a3a156a88561eeaf77091fae/res/a2b9d534-2e89-4cc1-8869-f1cb0b86e4da/skitch.png)

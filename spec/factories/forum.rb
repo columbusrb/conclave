@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :forum, class: Forum do
+  factory :forum do
     title "Forum Title"
   end
 end

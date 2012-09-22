@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   before(:each) do
-    @attr = FactoryGirl.attributes_for(:user)
+    @attr = attributes_for(:user)
   end
 
   it "should create a new instance given a valid attribute" do
@@ -113,7 +113,7 @@ describe User do
 
   describe "associations" do
     before do
-      @user = FactoryGirl.create(:user)
+      @user = create(:user)
     end
 
     it "should know about related Comments" do

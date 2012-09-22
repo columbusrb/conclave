@@ -1,17 +1,15 @@
 Conclave::Application.routes.draw do
-  get "forums/index"
-
-  get "forums/show"
-
   ActiveAdmin.routes(self)
 
   authenticated :user do
     root :to => 'home#index'
   end
-  root :to => "home#index"
+  root :to => "forums#index"
   devise_for :users
   resources :users, :only => [:show, :index]
-  resources :forums, :only => [:show, :index]
+  resources :forums, :only => [:show, :index] do
+    resources :conversations, :only => [:new]
+  end
  
   # The priority is based upon order of creation:
   # first created -> highest priority.

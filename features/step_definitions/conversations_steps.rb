@@ -14,6 +14,15 @@ Given /^a conversation with a comment$/ do
   @comment = create(:comment, conversation: @conversation)
 end
 
+Given /^a forum and a conversation with (\d+) comments?$/ do |count|
+  @forum = create(:forum)
+  @conversation = create(:conversation, forum: @forum)
+  count.to_i.times do 
+    create(:comment, conversation: @conversation)
+  end
+  @comment = @conversation.comments.first
+end
+
 #
 # When Steps
 #
@@ -55,5 +64,24 @@ end
 Then /^I should see the comment content on the page$/ do
   within("#comment_#{@comment.id}") do
     page.should have_content @comment.content
+  end
+end
+
+Then /^I should see a link to the conversation's show page$/ do
+  within("#conversation_#{@conversation.id}") do
+    page.should have_link @conversation.title
+  end
+end
+
+
+Then /^The comment count for the conversation should be (\d+)$/ do |count|
+  within("#conversation_#{@conversation.id}") do
+    page.should have_content count
+  end
+end
+
+Then /^I should see the date of the conversation's most recent comment$/ do
+  within("#conversation_#{@conversation.id}") do
+    page.should have_content @comment.created_at.strftime("%m/%d/%Y")
   end
 end

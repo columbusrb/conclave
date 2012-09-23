@@ -1,3 +1,7 @@
 = content_tag_for(:tr, comment) do
   td
-    = comment.content
+    div
+      div[class="comment_header pull-right"]
+        = link_to "Edit", edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-min"
+      .comment_content
+        = comment.content

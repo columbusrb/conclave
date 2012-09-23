@@ -1,0 +1,6 @@
+= simple_form_for [@conversation, @comment], :html => {:class => 'form-horizontal'} do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span9"}
+  .form-actions
+    = f.button :submit, "Submit Comment", :class => "btn btn-primary"

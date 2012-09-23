@@ -68,5 +68,15 @@ Feature: Conversations
     Given a forum and a conversation
     When I submit a quick reply with the content "Personally I think Apple is the best pie"
     Then I should see the comment with the content "Personally I think Apple is the best pie"
+    
+  Scenario: Comments should have an edit button
+    Given a forum and a conversation with 1 comments
+    When I visit the conversation comments page
+    Then there will be an edit button on the comment
 
+  Scenario: Edit a comment
+    Given a forum and a conversation
+    And a comment with the content "The Skinny Vanilla Latte is by far the best"
+    When I edit the comment to say "The Pumpkin Spice Latte is by far the best"
+    Then I the conversation should display the content "The Pumpkin Spice Latte is by far the best"
 

@@ -23,6 +23,11 @@ Given /^a forum and a conversation with (\d+) comments?$/ do |count|
   @comment = @conversation.comments.first
 end
 
+Given /^a comment with the content "(.+)"$/ do |content|
+  @comment = create(:comment, conversation: @conversation, content: content)
+end
+
+
 #
 # When Steps
 #
@@ -57,6 +62,15 @@ end
 
 When /^I submit a quick reply with the content "(.+)"$/ do |content|
   visit conversation_comments_path(@conversation)
+  fill_in "comment_content", :with => content
+  click_button "Submit Comment"
+end
+
+When /^I edit the comment to say "(.+)"$/ do |content|
+  visit conversation_comments_path(@conversation)
+  within "#comment_#{@comment.id}" do
+    click_link "Edit"
+  end
   fill_in "comment_content", :with => content
   click_button "Submit Comment"
 end
@@ -116,4 +130,16 @@ end
 
 Then /^I should see the comment with the content "(.+)"$/ do |content|
   page.should have_content content
+end
+
+Then /^there will be an edit button on the comment$/ do
+  within("#comment_#{@comment.id}") do
+    page.should have_link 'Edit'
+  end
+end
+
+Then /^I the conversation should display the content "(.+)"$/ do |content|
+  within("#comment_#{@comment.id}") do
+    page.should have_content content
+  end
 end

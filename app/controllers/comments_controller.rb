@@ -26,4 +26,18 @@ class CommentsController < ApplicationController
       end
     end
   end
+  
+  def edit
+    @conversation = Conversation.find(params[:conversation_id])
+    @comment = Comment.find(params[:id])
+  end
+  
+  def update
+    @comment = Comment.find(params[:id])
+    if @comment.update_attributes(params[:comment])
+      redirect_to conversation_comments_path(@comment.conversation), notice: "Comment was successfully updated"
+    else
+      render action: 'edit'
+    end
+  end
 end

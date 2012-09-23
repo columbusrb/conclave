@@ -26,6 +26,47 @@ Feature: Conversations
     When I visit the conversation comments page
     Then I should see the comment content on the page
   
+  Scenario: Show an existing conversation in a forum
+  	Given a forum and a conversation
+  	When I visit the forum show page
+  	Then I should see the conversation on the forum's show page
+  	And I should see a link to the conversation's show page
   
+  Scenario: Show the number of comments for a conversation
+  	Given a forum and a conversation with 10 comments
+  	When I visit the forum show page
+  	Then The comment count for the conversation should be 10
+	And I should see the date of the conversation's most recent comment
+  
+  Scenario: Show the date of the most recent comment for a conversation
+  	Given a forum and a conversation with 1 comment
+  	When I visit the forum show page
+  	Then I should see the date of the conversation's most recent comment
+  	
+  Scenario: Reply button should show for existing conversation
+    Given a forum and a conversation
+    When I visit the conversation comments page
+    Then I should see a button labeled "Reply"
+  
+  Scenario: Reply button takes user to reply form
+    Given a forum and a conversation
+    When I click the reply button on the forum show page
+    Then I should be on the new comment page for the conversation
+    
+  Scenario: Submitting a reply shows the reply on the conversation page
+    Given a forum and a conversation
+    When I submit a reply to the conversation with the content "Hello from Cucumber"
+    Then the conversation should show the new comment with the content "Hello from Cucumber"
 
-  
+  Scenario: Quick Reply Form
+    Given a forum and a conversation
+    When I visit the conversation comments page
+    Then there will be a form at the bottom to submit a quick reply
+    
+  @javascript
+  Scenario: Submit Quick Reply
+    Given a forum and a conversation
+    When I submit a quick reply with the content "Personally I think Apple is the best pie"
+    Then I should see the comment with the content "Personally I think Apple is the best pie"
+
+

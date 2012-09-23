@@ -23,4 +23,5 @@ class ConversationsController < ApplicationController
       render action: "new"
     end
   end
+
 end

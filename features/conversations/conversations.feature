@@ -25,6 +25,8 @@ Feature: Conversations
     Given a conversation with a comment
     When I visit the conversation comments page
     Then I should see the comment content on the page
+    And I should see the date of the comment's creation
+    And I should see the gravatar for the comment's creator
   
   Scenario: Show an existing conversation in a forum
   	Given a forum and a conversation

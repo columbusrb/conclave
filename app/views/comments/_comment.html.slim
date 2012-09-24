@@ -2,6 +2,7 @@
   td
     div
       div[class="comment_header pull-right"]
+      - if can?(:edit, comment)
         = link_to "Edit", edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
       div[class="pull-left"]
         = gravatar(comment.user)

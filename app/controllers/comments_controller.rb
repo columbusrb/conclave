@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index]
   def index
     @conversation = Conversation.find(params[:conversation_id])
     @comments = @conversation.comments

@@ -1,4 +1,5 @@
 class ConversationsController < ApplicationController
+  before_filter :authenticate_user!
   def new
     @forum = Forum.find(params[:forum_id])
     @conversation = Conversation.new

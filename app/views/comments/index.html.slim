@@ -1,18 +1,20 @@
 .page-header
   h1 #{@conversation.title}
 
-= link_to "Reply", new_conversation_comment_path(@conversation), class: "btn btn-primary"
+- if can? :create, Comment
+  = link_to "Reply", new_conversation_comment_path(@conversation), class: "btn btn-primary"
 
 .conversation_comments
   table[class="table table-striped table-bordered" id="conversation_comments_table"]
     - @comments.each do |comment|
       = render comment
-.quick_reply
-  .page-header
-    h3 #{"Quick Reply"}
-  = simple_form_for [@conversation, @comment], :remote => true, :html => {:class => 'form-horizontal', :id => "quick_reply_form"} do |f|
-    = f.error_notification
-    .form-inputs
-      = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span10"}
-    .form-actions
-      = f.button :submit, "Submit Comment", :class => "btn btn-primary"
+- if can? :create, Comment
+  .quick_reply
+    .page-header
+      h3 #{"Quick Reply"}
+    = simple_form_for [@conversation, @comment], :remote => true, :html => {:class => 'form-horizontal', :id => "quick_reply_form"} do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span10"}
+      .form-actions
+        = f.button :submit, "Submit Comment", :class => "btn btn-primary"

@@ -44,6 +44,41 @@ Feature: Conversations
   	Given a forum and a conversation with 1 comment
   	When I visit the forum show page
   	Then I should see the date of the conversation's most recent comment
+  	
+  Scenario: Reply button should show for existing conversation
+    Given a forum and a conversation
+    When I visit the conversation comments page
+    Then I should see a button labeled "Reply"
+  
+  Scenario: Reply button takes user to reply form
+    Given a forum and a conversation
+    When I click the reply button on the forum show page
+    Then I should be on the new comment page for the conversation
+    
+  Scenario: Submitting a reply shows the reply on the conversation page
+    Given a forum and a conversation
+    When I submit a reply to the conversation with the content "Hello from Cucumber"
+    Then the conversation should show the new comment with the content "Hello from Cucumber"
 
+  Scenario: Quick Reply Form
+    Given a forum and a conversation
+    When I visit the conversation comments page
+    Then there will be a form at the bottom to submit a quick reply
+    
+  @javascript
+  Scenario: Submit Quick Reply
+    Given a forum and a conversation
+    When I submit a quick reply with the content "Personally I think Apple is the best pie"
+    Then I should see the comment with the content "Personally I think Apple is the best pie"
+    
+  Scenario: Comments should have an edit button
+    Given a forum and a conversation with 1 comments
+    When I visit the conversation comments page
+    Then there will be an edit button on the comment
 
+  Scenario: Edit a comment
+    Given a forum and a conversation
+    And a comment with the content "The Skinny Vanilla Latte is by far the best"
+    When I edit the comment to say "The Pumpkin Spice Latte is by far the best"
+    Then I the conversation should display the content "The Pumpkin Spice Latte is by far the best"
 

@@ -3,5 +3,9 @@
     div
       div[class="comment_header pull-right"]
         = link_to "Edit", edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
+      div[class="pull-left"]
+        = gravatar(comment.user)
+        div
+          = comment.created_at.strftime("%m/%d/%Y")
       .comment_content
         = comment.content

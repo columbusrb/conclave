@@ -20,7 +20,7 @@ Given /^a forum and a conversation with (\d+) comments?$/ do |count|
   count.to_i.times do 
     create(:comment, conversation: @conversation)
   end
-  @comment = @conversation.comments.first
+  @comment = @conversation.comments.last
 end
 
 Given /^a comment with the content "(.+)"$/ do |content|
@@ -141,5 +141,17 @@ end
 Then /^I the conversation should display the content "(.+)"$/ do |content|
   within("#comment_#{@comment.id}") do
     page.should have_content content
+  end
+end
+
+Then /^I should see the date of the comment's creation$/ do
+  within("#comment_#{@comment.id}") do
+    page.should have_content @comment.created_at.strftime("%m/%d/%Y")
+  end
+end
+
+Then /^I should see the gravatar for the comment's creator$/ do
+  within("#comment_#{@comment.id}") do
+    page.should have_selector("img", :class => "gravatar")
   end
 end

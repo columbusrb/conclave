@@ -16,7 +16,6 @@ class ConversationsController < ApplicationController
       c.comments << @comment
     end
     @comment.conversation = @conversation
-    puts @conversation
     if @conversation.save!
       redirect_to conversation_comments_path(@conversation)
     else

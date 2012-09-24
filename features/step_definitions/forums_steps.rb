@@ -19,8 +19,9 @@ end
 #
 # Then Step Definitions
 #
-Then /^I should see a forum titled "(.+)"$/ do |title|
+Then /^I should see a forum link titled "(.+)"$/ do |title|
   within("tr#forum_#{@forum.id}") do
     page.should have_content title
+    page.should have_selector("a")
   end
 end

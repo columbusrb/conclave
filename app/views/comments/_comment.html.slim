@@ -1,12 +1,16 @@
-= content_tag_for(:tr, comment) do
-  td
-    div
-      div[class="comment_header pull-right"]
-      - if can?(:edit, comment)
-        = link_to "Edit", edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
-      div[class="pull-left"]
-        = gravatar(comment.user)
-        div
-          = comment.created_at.strftime("%m/%d/%Y")
+.row-fluid class='comment' id='comment_#{comment.id}'
+  .span2
+    .row-fluid
+      .thumbnail
+        = link_to_if(current_user, gravatar(comment.user, size: 200), user_path(comment.user))
+        = link_to_if(current_user, comment.user.email, user_path(comment.user))      
+  .span10
+    .row-fluid class='comment-header'
+      .span8
+        p #{comment.created_at.strftime("%m/%d/%Y %l:%M %p %Z")} (#{time_ago_in_words(comment.created_at)} ago)
+      .span2 class='pull-right'
+        - if can?(:edit, comment)
+          = link_to "Edit", edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
+    .row-fluid
       .comment_content
         = markdown(comment.content)

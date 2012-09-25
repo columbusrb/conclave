@@ -1,2 +1,2 @@
-$("#conversation_comments_table").append("<%= escape_javascript(render(@comment)) %>");
+$("#conversation_comments").append("<%= escape_javascript(render(@comment)) %>");
 $("#comment_content").val("");

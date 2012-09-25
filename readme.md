@@ -5,6 +5,9 @@ The project was started on 9/8/2012 and is under development. It is not recommen
 
 This project will start as a Rails application, but once approaching release we'll repackage as a gem that will integrate into an existing Rails application.
 
+## Status
+![Travis Status](https://secure.travis-ci.org/columbusrb/conclave.png)
+
 ## Goals
 1. Teach the beauty of the Ruby and Rails stack
 2. Lower the Open Source contribution barrier

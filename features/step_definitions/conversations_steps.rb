@@ -17,7 +17,7 @@ end
 Given /^a forum and a conversation with (\d+) comments?$/ do |count|
   @forum = create(:forum)
   @conversation = create(:conversation, forum: @forum)
-  count.to_i.times do 
+  count.to_i.times do
     create(:comment, conversation: @conversation)
   end
   @comment = @conversation.comments.last
@@ -25,6 +25,21 @@ end
 
 Given /^a comment with the content "(.+)"$/ do |content|
   @comment = create(:comment, conversation: @conversation, content: content)
+end
+
+Given /^a forum and a conversation with (\d+) comments that I authored$/ do |count|
+  raise "Multiple Users..." if User.count > 1
+  @forum = create(:forum)
+  @conversation = create(:conversation, forum: @forum)
+  count.to_i.times do
+    create(:comment, conversation: @conversation, user: User.first)
+  end
+  @comment = @conversation.comments.last
+end
+
+Given /^a comment I authored with the content "(.*?)"$/ do |content|
+  raise "Multiple Users..." if User.count > 1
+  @comment = create(:comment, conversation: @conversation, content: content, user: User.first)
 end
 
 

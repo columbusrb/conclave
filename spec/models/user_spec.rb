@@ -119,6 +119,10 @@ describe User do
     it "should know about related Comments" do
       @user.comments.should == []
     end
+
+    it "should know about Conversations started by this user" do
+      @user.conversations.should == []
+    end
   end
 
 end

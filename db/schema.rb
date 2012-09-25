@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120921204724) do
+ActiveRecord::Schema.define(:version => 20120925023432) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -42,8 +42,10 @@ ActiveRecord::Schema.define(:version => 20120921204724) do
   create_table "conversations", :force => true do |t|
     t.string  "title"
     t.integer "forum_id"
+    t.integer "creator_id"
   end
 
+  add_index "conversations", ["creator_id"], :name => "index_conversations_on_creator_id"
   add_index "conversations", ["forum_id"], :name => "index_conversations_on_forum_id"
 
   create_table "forums", :force => true do |t|

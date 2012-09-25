@@ -6,6 +6,8 @@ class Conversation < ActiveRecord::Base
 
   attr_accessible :title, :forum_id
   validates_presence_of :forum, :title, :creator
+  
+  default_scope order('updated_at DESC')
 
   def original_author
     creator

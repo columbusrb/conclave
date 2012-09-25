@@ -25,6 +25,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'email_spec'
+  gem 'timecop'
 end
 
 group :production do

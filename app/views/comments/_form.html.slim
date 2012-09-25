@@ -1,6 +1,24 @@
-= simple_form_for [@conversation, @comment], :html => {:class => 'form-horizontal'} do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span9"}
-  .form-actions
-    = f.button :submit, "Submit Comment", :class => "btn btn-primary"
+ul class='nav nav-tabs'
+  li class='active'
+    = link_to 'Edit', '#reply', data: {toggle: 'tab'}
+  li
+    = link_to 'Preview', '#preview', data: {toggle: 'tab'}
+.tab-content
+  div id='reply' class='active tab-pane'
+    = simple_form_for [@conversation, @comment], :html => {:class => 'form-horizontal'} do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span9"}
+      .form-actions
+        = f.button :submit, "Submit Comment", :class => "btn btn-primary"
+  div id='preview' class='tab-pane'
+    table[class="table table-striped table-bordered" id="conversation_comment_preview"]
+      td
+       div
+        div[class="comment_header pull-right"]
+          = link_to "Edit", '#', :class => "btn btn-mini"
+        div[class="pull-left"]
+          = gravatar(current_user)
+          div
+            = Time.now.strftime("%m/%d/%Y")
+        div id='preview-text'

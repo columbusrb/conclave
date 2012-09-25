@@ -35,8 +35,16 @@ describe Conversation do
       @conversation.forum.should == forum
     end
   end
-
   it "should know about its original author" do
+    u1 = create(:user)     
+    u2 = create(:user) 
+    conversation = create(:conversation, :creator => u1)  
+    c1 = create(:comment, :user => u1, conversation: conversation)     
+    c2 = create(:comment, :user => u2, conversation: conversation)     
+    conversation.original_author.should == u1
+  end
+
+  it "original author should be a User" do
     @conversation.original_author.should be_a(User)
   end
 end

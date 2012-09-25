@@ -14,6 +14,7 @@ class ConversationsController < ApplicationController
       c.title = params[:conversation][:title]
       @comment.content = params[:conversation][:comment][:content]
       @comment.user = current_user
+      c.creator = current_user
       c.comments << @comment
     end
     @comment.conversation = @conversation

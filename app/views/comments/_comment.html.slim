@@ -9,4 +9,4 @@
         div
           = comment.created_at.strftime("%m/%d/%Y")
       .comment_content
-        = comment.content
+        = markdown(comment.content)

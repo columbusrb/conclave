@@ -9,4 +9,4 @@ table.table.table-striped
           td =' link_to(c.title, conversation_comments_path(c))
           td =' pluralize(c.comments_count, "Comment") 
           -if c.comments.any?
-            td =' c.updated_at.strftime("%m/%d/%Y")
+            td =' timeago c.updated_at.utc

@@ -1,14 +1,20 @@
 = render 'layouts/breadcrumbs'
+a[id='top']
 .page-header
   h1 #{@conversation.title}
 
-- if can? :create, Comment
-  = link_to "Reply", new_conversation_comment_path(@conversation), class: "btn btn-primary"
+div[class='btn-group']
+  = link_to glyphicon("icon-chevron-down"), '#bottom', class: 'btn'
+  - if can? :create, Comment
+    = link_to glyphicon('icon-share-alt', text: 'Quick'), '#quick_reply', class: 'btn', onclick: "$('textarea').focus();"
+    = link_to glyphicon('icon-pencil', text: 'Reply'), new_conversation_comment_path(@conversation), class: "btn"
 
 div[class='conversation_comments' id='conversation_comments']
   = render @conversation.comments
+  a[id='bottom']
+  = link_to glyphicon('icon-chevron-up'), "#top", class: 'btn'
 - if can? :create, Comment
-  .quick_reply
+  .quick_reply[id='quick_reply']
     .page-header
       h3 #{"Quick Reply"}
       ul class='nav nav-tabs'
@@ -21,8 +27,8 @@ div[class='conversation_comments' id='conversation_comments']
             = simple_form_for [@conversation, @comment], :remote => true, :html => {:class => 'form-horizontal', :id => "quick_reply_form"} do |f|
               = f.error_notification
               .form-inputs
-                = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span10", :rows => '5'}
+                = f.input :content, :required => true, :autofocus => false, :label => "Body", :input_html => {:class => "span10", :rows => '5'}
               .form-actions
                 = f.button :submit, "Submit Comment", :class => "btn btn-primary"
         div id='preview' class='tab-pane'
-          = render 'comment_preview'
+          = render 'comment_preview'    

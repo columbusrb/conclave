@@ -10,7 +10,7 @@
         p #{comment.created_at} (#{timeago(comment.created_at.utc)})
       .span2 class='pull-right'
         - if can?(:edit, comment)
-          = link_to "Edit", edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
+          = link_to glyphicon('icon-edit', text: 'Edit'), edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
     .row-fluid
       .comment_content
         = markdown(comment.content)

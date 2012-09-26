@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
-gem 'sqlite3'
 gem 'slim'
 gem "slim-rails"
 gem 'simple_form'
@@ -16,8 +15,10 @@ gem "twitter-bootstrap-rails"
 gem "foreman"
 gem "unicorn"
 gem "redcarpet"
+gem "heroku"
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'rspec'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false

@@ -125,7 +125,7 @@ end
 
 Then /^I should see the date of the conversation's most recent comment$/ do
   within("#conversation_#{@conversation.id}") do
-    page.should have_content @comment.created_at.strftime("%m/%d/%Y")
+    page.should have_content @comment.created_at
   end
 end
 
@@ -159,7 +159,7 @@ end
 
 Then /^I should see the date of the comment's creation$/ do
   within("#comment_#{@comment.id}") do
-    page.should have_content @comment.created_at.strftime("%m/%d/%Y")
+    page.should have_content @comment.created_at
   end
 end
 

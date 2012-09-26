@@ -65,6 +65,29 @@ Feature: Conversations
     When I visit the conversation comments page
     Then there will be a form at the bottom to submit a quick reply
 
+  Scenario: New Conversation Breadcrumbs
+    Given a forum
+    When I go to the new conversation form
+    Then I should see a breadcrumb link titled "Forums"
+    And I should see a breadcrumb link with the forum title
+    And I should see a breadcrumb element titled "New Conversation"
+
+  Scenario: Existing Conversation Breadcrumbs
+    Given a forum and a conversation
+    When I visit the conversation comments page
+    Then I should see a breadcrumb link titled "Forums"
+    And I should see a breadcrumb link with the forum title
+    And I should see a breadcrumb element with the conversation ID
+
+  Scenario: New Conversation Comment Breadcrumbs
+    Given a forum and a conversation
+    When I click the reply button on the forum show page
+    Then I should see a breadcrumb link titled "Forums"
+    And I should see a breadcrumb link with the forum title
+    And I should see a breadcrumb link with the conversation ID
+    And I should see a breadcrumb element titled "Reply"
+
+
   @javascript
   Scenario: Submit Quick Reply
     Given a forum and a conversation

@@ -72,4 +72,21 @@ describe Conversation do
       Timecop.return
     end
   end
+
+  context 'comments counter' do
+    before do
+      @conversation = create(:conversation)
+    end
+
+    it 'counter cache should increment when a comment is added' do
+      original_comments_count = @conversation.comments_count
+      create(:comment, conversation: @conversation)
+      Conversation.find(@conversation.id).comments_count.should eq (original_comments_count + 1)
+    end
+
+    it 'counter cache should decrement when a comment is destroyed' do
+      Conversation.find(@conversation.id).comments.destroy_all
+      Conversation.find(@conversation.id).comments_count.should eq 0
+    end
+  end
 end

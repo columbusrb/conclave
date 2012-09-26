@@ -10,6 +10,6 @@ div[id="conversation_comment_preview"]
         .span8
           p #{Time.now} (#{time_ago_in_words(Time.now)} ago)
         .span2
-          = link_to "Edit", '#', :class => "btn btn-mini"
+          = link_to glyphicon('icon-edit', text: 'Edit'), '#', :class => "btn btn-mini"
       .row-fluid
         div id='preview-text'              

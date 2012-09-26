@@ -1,5 +1,4 @@
-div.page-header 
-  h1 Forums
+= render 'layouts/breadcrumbs'
 table.table.table-striped
   - @forums.each do |f|
     tr id="forum_#{f.id}"

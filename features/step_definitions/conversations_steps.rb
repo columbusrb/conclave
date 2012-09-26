@@ -88,6 +88,11 @@ When /^I edit the comment to say "(.+)"$/ do |content|
   click_button "Submit Comment"
 end
 
+When /^I go to the new conversation form$/ do
+  visit new_forum_conversation_path(@forum)
+end
+
+
 #
 # Then Steps
 #
@@ -167,4 +172,22 @@ Then /^I should see the gravatar for the comment's creator$/ do
   within("#comment_#{@comment.id}") do
     page.should have_selector("img", :class => "gravatar")
   end
+end
+
+Then /^I should see a breadcrumb link with the forum title$/ do
+  within("ul.breadcrumb") do
+    page.should have_link @forum.title
+  end
+end
+
+Then /^I should see a breadcrumb element with the conversation ID$/ do
+  within("ul.breadcrumb") do
+    page.should have_content @conversation.id.to_s
+  end  
+end
+
+Then /^I should see a breadcrumb link with the conversation ID$/ do
+  within("ul.breadcrumb") do
+    page.should have_link @conversation.id.to_s
+  end  
 end

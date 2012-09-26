@@ -1,0 +1,43 @@
+ul[class='breadcrumb']
+  - if controller_name == 'forums' && controller.action_name == 'index'
+    li[class='active'] Forums
+  - elsif controller_name == 'forums' && controller.action_name == 'show'
+    li #{link_to 'Forums', forums_path}
+    li 
+      span[class='divider']
+        | /
+      li[class='active'] #{@forum.title}
+  - elsif controller_name == 'conversations' && controller.action_name == 'new'
+    li #{link_to 'Forums', forums_path}
+    li 
+      span[class='divider']
+        | /
+      li #{link_to @forum.title, forum_path(@forum)}
+    li 
+      span[class='divider']
+        | /
+      li[class='active'] New Conversation
+  - elsif controller_name == 'comments' && controller.action_name == 'index'
+    li #{link_to 'Forums', forums_path}
+    li
+      span[class='divider']
+        | /
+      li #{link_to @conversation.forum.title, forum_path(@conversation.forum)}
+    li
+      span[class='divider']
+        | /
+      li[class='active'] #{@conversation.id}
+  - elsif controller_name == 'comments' && controller.action_name == 'new'
+    li #{link_to 'Forums', forums_path}
+    li
+      span[class='divider']
+        | /
+      li #{link_to @conversation.forum.title, forum_path(@conversation.forum)}
+    li
+      span[class='divider']
+        | /
+      li #{link_to @conversation.id, conversation_comments_path(@conversation)}
+    li
+      span[class='divider']
+        | /
+      li[class='active'] Reply

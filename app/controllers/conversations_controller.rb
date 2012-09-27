@@ -1,27 +1,25 @@
 class ConversationsController < ApplicationController
   before_filter :authenticate_user!
   def new
-    @forum = Forum.find(params[:forum_id])
-    @conversation = Conversation.new
-    @comment = Comment.new
+    @conversation = forum.conversations.new
+    @conversation.comments.build
   end
 
   def create
-    @forum = Forum.find(params[:forum_id])
-    @comment = Comment.new
-    @conversation = Conversation.new do |c|
-      c.forum = @forum
-      c.title = params[:conversation][:title]
-      @comment.content = params[:conversation][:comment][:content]
-      @comment.user = current_user
-      c.creator = current_user
-      c.comments << @comment
-    end
-    @comment.conversation = @conversation
-    if @conversation.save!
+    params[:conversation][:comments_attributes].each {|c| c[1].merge!(user_id: current_user.id)}
+    @conversation = forum.conversations.new(params[:conversation])
+    @conversation.creator = current_user
+
+    if @conversation.save
       redirect_to conversation_comments_path(@conversation)
     else
       render action: "new"
     end
+  end
+
+  protected
+
+  def forum
+    @forum ||= Forum.find(params[:forum_id])
   end
 end

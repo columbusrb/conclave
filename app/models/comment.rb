@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
     counter_cache: true
 
   attr_accessible :conversation_id, :user_id, :content
-  validates_presence_of :user, :conversation
+  validates_presence_of :user, :content
 
   default_scope order("created_at ASC")
 

@@ -4,7 +4,7 @@ class Conversation < ActiveRecord::Base
   has_many :comments, :dependent => :destroy
   accepts_nested_attributes_for :comments
 
-  attr_accessible :title, :forum_id
+  attr_accessible :title, :forum_id, :comments_attributes
   validates_presence_of :forum, :title, :creator
   
   default_scope order('updated_at DESC')

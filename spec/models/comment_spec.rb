@@ -15,10 +15,10 @@ describe Comment do
       @comment.valid?.should be_false
     end
 
-    it "should require a conversation" do
-      @comment.conversation = nil
-      @comment.valid?.should be_false
-    end
+    # it "should require a conversation" do
+    #   @comment.conversation = nil
+    #   @comment.valid?.should be_false
+    # end
   end
 
   describe "associations" do
@@ -34,11 +34,11 @@ describe Comment do
       @comment.content.should == new_content
     end
 
-    it "should allow :conversation_id" do
-      conversation = FactoryGirl.create(:conversation)
-      @comment.update_attributes({:conversation_id => conversation.id})
-      @comment.conversation.should == conversation
-    end
+    # it "should allow :conversation_id" do
+    #   conversation = FactoryGirl.create(:conversation)
+    #   @comment.update_attributes({:conversation_id => conversation.id})
+    #   @comment.conversation.should == conversation
+    # end
 
     it "should allow :user_id" do
       user = FactoryGirl.create(:user)

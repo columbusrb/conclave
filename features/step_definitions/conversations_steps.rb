@@ -40,7 +40,6 @@ Given /^a comment I authored with the content "(.*?)"$/ do |content|
   @comment = create(:comment, conversation: @conversation, content: content, user: @user)
 end
 
-
 #
 # When Steps
 #
@@ -53,7 +52,7 @@ When /^I create a new conversation on the forum$/ do
   visit forum_path(@forum)
   click_link "New Conversation"
   fill_in "conversation_title", with: "My Awesome Thread"
-  fill_in "conversation_comment_content", with: "My Awesome Body"
+  fill_in "conversation_comments_attributes_0_content", with: "My Awesome Body"
   click_button "Submit Conversation"
   @conversation = Conversation.last
 end

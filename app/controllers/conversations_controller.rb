@@ -10,7 +10,7 @@ class ConversationsController < ApplicationController
     @conversation = forum.conversations.new(params[:conversation])
     @conversation.creator = current_user
 
-    if @conversation.save
+    if @conversation.save!
       redirect_to conversation_comments_path(@conversation)
     else
       render action: "new"

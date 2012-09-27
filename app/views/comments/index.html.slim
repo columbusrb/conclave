@@ -11,8 +11,8 @@ div[class='btn-group']
 
 div[class='conversation_comments' id='conversation_comments']
   = render @conversation.comments
-  a[id='bottom']
-  = link_to glyphicon('icon-chevron-up'), "#top", class: 'btn'
+a[id='bottom']
+= link_to glyphicon('icon-chevron-up'), "#top", class: 'btn'
 - if can? :create, Comment
   .quick_reply[id='quick_reply']
     .page-header

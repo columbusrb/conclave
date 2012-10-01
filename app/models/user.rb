@@ -20,7 +20,12 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_with_social_media_account(oauth_hash)
     user = find_by_provider_and_uid(oauth_hash['provider'], oauth_hash['uid'])
-    socially_create(oauth_hash) unless user.present?
+
+    unless user.present?
+      user = socially_create(oauth_hash)
+    end
+
+    user
   end
 
   def self.socially_create(oauth_hash)

@@ -32,3 +32,27 @@ if AdminSetting.count == 0
     a.save!
   end
 end
+
+unless AdminSetting.find_by_setting('twitter_oauth_key')
+  AdminSetting.create do |a|
+    a.setting = "twitter_oauth_key"
+    a.value   = "LCOSViyT13oZQT07bJLqSQ"
+  end
+
+  AdminSetting.create do |a|
+    a.setting = "twitter_oauth_secret"
+    a.value   = "olERBpKi5pyxxuI5eqiwedoEAln5YBS6oN5CK5O9rc"
+  end
+end
+
+unless AdminSetting.find_by_setting('facebook_oauth_key')
+  AdminSetting.create do |a|
+    a.setting = "facebook_oauth_key"
+    a.value   = ""
+  end
+
+  AdminSetting.create do |a|
+    a.setting = "facebook_oauth_secret"
+    a.value   = ""
+  end
+end

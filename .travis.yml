@@ -6,6 +6,7 @@ env:
   - DB=sqlite
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate
+  - RAILS_ENV=test bundle exec rake --trace db:seed
   - bundle exec rake db:test:prepare
   - bundle exec rake
 bundler_args: --binstubs=./bundler_stubs

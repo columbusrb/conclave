@@ -18,6 +18,9 @@ gem "redcarpet"
 gem "heroku"
 gem 'coffee-rails', '~> 3.2.1'
 gem 'turbolinks'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'sqlite3'

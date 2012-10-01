@@ -19,6 +19,11 @@ describe Comment do
       @comment.conversation = nil
       @comment.valid?.should be_false
     end
+
+    it "should require some content" do
+      @comment.content = nil
+      @comment.valid?.should be_false
+    end
   end
 
   describe "associations" do

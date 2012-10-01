@@ -17,6 +17,7 @@ gem "unicorn"
 gem "redcarpet"
 gem "heroku"
 gem 'coffee-rails', '~> 3.2.1'
+gem 'turbolinks'
 
 group :development, :test do
   gem 'sqlite3'

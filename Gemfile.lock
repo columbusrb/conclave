@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: 95d7a2c8dbe6d6146c17053be4e2b96f7dcbb88a
+  specs:
+    twitter-bootstrap-rails (2.1.3)
+      actionpack (>= 3.1)
+      less-rails (~> 2.2.3)
+      railties (>= 3.1)
+      therubyracer (>= 0.10.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -268,11 +278,6 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     turbolinks (0.3.3)
-    twitter-bootstrap-rails (2.1.3)
-      actionpack (>= 3.1)
-      less-rails (~> 2.2.3)
-      railties (>= 3.1)
-      therubyracer (~> 0.10.2)
     tzinfo (0.3.33)
     uglifier (1.2.7)
       execjs (>= 0.3.0)
@@ -320,6 +325,6 @@ DEPENDENCIES
   sqlite3
   timecop
   turbolinks
-  twitter-bootstrap-rails
+  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   unicorn

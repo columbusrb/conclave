@@ -5,6 +5,14 @@ def create_visitor
     :password => "please", :password_confirmation => "please" }
 end
 
+def create_site_user
+  @site_user ||= User.create({email: 'me@my.net', password: 'password', password_confirmation: 'password'})
+end
+
+def find_site_user
+  @site_user ||= User.where(email: @site_user[:email]).first
+end
+
 def find_user
   @user ||= User.where(:email => @visitor[:email]).first
 end
@@ -69,6 +77,11 @@ end
 
 Given /^I have the role of "(.+)"$/ do |role|
   @user.update_attribute(:role, role )
+end
+
+Given /^a site user with the role of "(.*?)"$/ do |role|
+  create_site_user
+  @site_user.update_attribute(:role, role)
 end
 
 ### WHEN ###

@@ -26,6 +26,26 @@ When /^I edit the forum title to be "(.*?)"$/ do |new_title|
   click_button ' Forum'
 end
 
+When /^I visit the edit admin role page$/ do
+  visit edit_admin_role_path(@site_user)
+end
+
+When /^I edit the site user to be "(.*?)"$/ do |role|
+  select role, from: "role_role"
+  click_button ' User'
+end
+
+When /^I visit the edit admin user page$/ do
+  visit edit_admin_user_path(@site_user)
+end
+
+When /^I edit the site user password to be "(.*?)"$/ do |password|
+  fill_in 'user_password', with: password
+  fill_in 'user_password_confirmation', with: password
+  click_button ' User'
+end
+
+
 # Then Steps
 Then /^I should see an admin entry for "(.*?)"$/ do |topic|
   page.should have_content(topic)
@@ -39,4 +59,12 @@ end
 
 Then /^the forum title should be "(.*?)"$/ do |title|
   page.should have_content(title)
+end
+
+Then /^the site user should be "(.*?)"$/ do |role|
+  page.should have_content(role)
+end
+
+Then /^the site user password should be the encrypted password for that site user$/ do
+  page.should have_content(User.find(@site_user.id).encrypted_password)
 end

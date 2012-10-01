@@ -1,26 +1,17 @@
 ActiveAdmin.register User do
 
-  controller do
-    def update
-      @user = User.find(params[:id])
-      if @user.update_attributes(params[:user].reject {|k,v| k == 'role'}) && @user.update_attribute(:role, params[:user][:role])     
-        redirect_to admin_user_path(@user)
-      else
-        render 'edit'
-      end
-    end
+  filter :email
+  filter :created_at, as: :date_range
+  filter :updated_at, as: :date_range
+  filter :current_sign_in_at, as: :date_range
+  filter :last_sign_in_at, as: :date_range
+  filter :current_sign_in_ip
+  filter :last_sign_in_ip
+  filter :role, as: :select, collection: User::ROLES
 
-    def create
-      @user = User.new(params[:user].reject {|k,v| k == 'role'})
-      if @user.save
-        redirect_to admin_user_path(@user)
-      else
-        render 'new'
-      end
-    end
-  end
 
   index do
+    selectable_column
     column :role
     column :email
     column :current_sign_in_at
@@ -33,7 +24,7 @@ ActiveAdmin.register User do
     f.inputs "Admin Details" do
       f.input :email
       f.input :password
-      f.input :role, as: :select, collection: User::ROLES
+      f.input :password_confirmation
     end
     f.buttons
   end

@@ -14,4 +14,5 @@ Feature: Admin
     And I should see an admin menu item for "Users"
     And I should see an admin menu item for "Comments"
     And I should see an admin menu item for "Conversations"
+    And I should see an admin menu item for "Roles"
 

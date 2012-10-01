@@ -67,6 +67,10 @@ Given /^I exist as an unconfirmed user$/ do
   create_unconfirmed_user
 end
 
+Given /^I have the role of "(.+)"$/ do |role|
+  @user.update_attribute(:role, role )
+end
+
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor

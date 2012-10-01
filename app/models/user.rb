@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_many :conversations, foreign_key: :creator_id
   has_many :comments
 
+  scope :role,  proc {|role| where(role: role)}
+
   ROLES = %w[admin moderator contributor banned]
 
 

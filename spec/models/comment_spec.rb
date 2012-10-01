@@ -30,6 +30,10 @@ describe Comment do
     it "should know about its Conversation" do
       @comment.respond_to?(:conversation).should be_true
     end
+
+    it "should know about its Uploaded Files" do
+      @comment.respond_to?(:uploaded_files).should be_true
+    end
   end
 
   describe "accessible attributes" do

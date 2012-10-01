@@ -1,0 +1,24 @@
+a[id='bottom']
+= link_to glyphicon('icon-chevron-up'), "#top", class: 'btn'
+- if can? :create, Comment
+  .quick_reply[id='quick_reply']
+    .page-header
+      h3 #{"Quick Reply"}
+      ul class='nav nav-tabs'
+        li class='active'
+          = link_to 'Reply', '#reply', data: {toggle: 'tab'}
+        li
+          = link_to 'Preview', '#preview', data: {toggle: 'tab'}
+      .tab-content
+        div id='reply' class='active tab-pane'
+            = simple_form_for [conversation, comment], :remote => true, :html => {:class => 'form-horizontal', :id => "quick_reply_form"} do |f|
+              = f.error_notification
+              .form-inputs
+                = f.simple_fields_for :comment do |cf|
+                  = cf.input :content, :required => true, :autofocus => false, :as => :text, :label => "Body", :input_html => {:class => "span10", :rows => '5'}
+                  = cf.simple_fields_for :uploaded_files do |uf|
+                    = uf.input :file, :as => :file
+              .form-actions
+                = f.button :submit, "Submit Comment", :class => "btn btn-primary"
+        div id='preview' class='tab-pane'
+          = render 'comment_preview'

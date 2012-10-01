@@ -68,8 +68,8 @@ When /^I click the reply button on the forum show page$/ do
 end
 
 When /^I submit a reply to the conversation with the content "(.+)"$/ do |content|
-  visit new_conversation_comment_path(@conversation)
-  fill_in "comment_content", :with => content
+  visit comments_index_path(conversation_id: @conversation.id)
+  fill_in "comment_comment_content", :with => content
   click_button "Submit Comment"
 end
 
@@ -183,11 +183,11 @@ end
 Then /^I should see a breadcrumb element with the conversation ID$/ do
   within("ul.breadcrumb") do
     page.should have_content @conversation.id.to_s
-  end  
+  end
 end
 
 Then /^I should see a breadcrumb link with the conversation ID$/ do
   within("ul.breadcrumb") do
     page.should have_link @conversation.id.to_s
-  end  
+  end
 end

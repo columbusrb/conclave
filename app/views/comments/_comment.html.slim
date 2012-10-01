@@ -3,7 +3,7 @@
     .row-fluid
       .thumbnail
         = link_to_if(current_user, gravatar(comment.user, size: 200), user_path(comment.user))
-        = link_to_if(current_user, comment.user.email, user_path(comment.user))      
+        = link_to_if(current_user, comment.user.email, user_path(comment.user))
   .span10
     .row-fluid class='comment-header'
       .span8
@@ -14,3 +14,7 @@
     .row-fluid
       .comment_content
         = markdown(comment.content)
+
+        - comment.uploaded_files.each do |uf|
+          = link_to uf.file.url, target: '_blank' do
+            = image_tag uf.file(:thumb)

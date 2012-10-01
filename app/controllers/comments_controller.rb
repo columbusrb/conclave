@@ -5,21 +5,26 @@ class CommentsController < ApplicationController
     @comments = @conversation.comments
     @comment = Comment.new
   end
-  
+
   def new
     @conversation = Conversation.find(params[:conversation_id])
     @comment = Comment.new
   end
-  
+
   def create
     @conversation = Conversation.find(params[:conversation_id])
-    @comment = Comment.new do |c|
-      c.conversation = @conversation
-      c.content = params[:comment][:content]
-      c.user = current_user
-    end
+
+    @comment = @conversation.comments.new({
+      content: params[:comment][:comment][:content],
+      user_id: current_user.id
+    })
+
     respond_to do |format|
       if @comment.save
+        if params[:comment][:comment][:uploaded_files].present?
+          @uploaded_file = @comment.uploaded_files.create(params[:comment][:comment][:uploaded_files])
+        end
+
         format.js
         format.html { redirect_to conversation_comments_path(@conversation), notice: "Comment was added successfully" }
       else
@@ -27,12 +32,12 @@ class CommentsController < ApplicationController
       end
     end
   end
-  
+
   def edit
     @conversation = Conversation.find(params[:conversation_id])
     @comment = Comment.find(params[:id])
   end
-  
+
   def update
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(params[:comment])

@@ -14,9 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.timeago
+//= require showdown
 //= require_tree .
 
-jQuery.timeago.settings.allowFuture = true;
-jQuery(document).ready(function() {
-  jQuery("time.timeago").timeago();
-});

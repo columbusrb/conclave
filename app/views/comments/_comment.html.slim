@@ -3,7 +3,7 @@
     .row-fluid
       .thumbnail
         = link_to_if(current_user, gravatar(comment.user, size: 200), user_path(comment.user))
-        = link_to_if(current_user, comment.user.email, user_path(comment.user))
+        = link_to_if(current_user, comment.user.name, user_path(comment.user))
   .span10
     .row-fluid class='comment-header'
       .span8

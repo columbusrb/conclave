@@ -1,3 +1,8 @@
+Given /^Twitter User is logged in$/ do
+  visit new_user_session_path
+  click_link 'Sign in with Twitter'
+end
+
 ### UTILITY METHODS ###
 
 def create_visitor

@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.timeago
-//= require turbolinks
 //= require_tree .
 
 jQuery.timeago.settings.allowFuture = true;

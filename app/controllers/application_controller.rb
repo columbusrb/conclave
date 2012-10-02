@@ -16,7 +16,11 @@ class ApplicationController < ActionController::Base
 
   def check_for_banned_user(user=nil, &block)
     user = current_user unless user.present?
-    redirect_banned_user(user) if user && (user_ban_check(user) || ip_ban_check(request.remote_ip))
+
+    if user && (!user.elevated?) && (user_ban_check(user) || ip_ban_check(request.remote_ip))
+      redirect_banned_user(user)
+    end
+
     block.call if block_given?
   end
 

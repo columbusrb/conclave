@@ -57,6 +57,10 @@ class User < ActiveRecord::Base
     self.role == role
   end
 
+  def elevated?
+    has_role?("admin") || has_role?("moderator")
+  end
+
   def ban!(length = 1.week)
     self.banned       = true
     self.banned_at    = Time.now

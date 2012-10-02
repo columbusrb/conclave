@@ -45,3 +45,11 @@ Feature: Sign in
     When I sign in with valid credentials
     Then I should see that I am banned
     And I should be signed out
+
+  Scenario: User's IP is banned and the User is elevated
+    Given I exist as a user
+    And I am an admin
+    And I am not logged in
+    And another user with my IP address is banned
+    When I sign in with valid credentials
+    Then I should be signed in

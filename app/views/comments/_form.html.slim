@@ -8,7 +8,10 @@ ul class='nav nav-tabs'
     = simple_form_for [@conversation, @comment], :html => {:class => 'form-horizontal'} do |f|
       = f.error_notification
       .form-inputs
-        = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span9"}
+        = f.simple_fields_for :comment do |cf|
+          = cf.input :content, as: :text, required: true, autofocus: true, :label => "Body", :input_html => {:class => "span9"}
+          = cf.simple_fields_for :uploaded_files do |uf|
+            = uf.input :file, as: :file
       .form-actions
         = f.button :submit, "Submit Comment", :class => "btn btn-primary"
   div id='preview' class='tab-pane'

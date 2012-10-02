@@ -39,4 +39,8 @@ Then /^I should see a breadcrumb element titled "(.+)"$/ do |title|
   within("ul.breadcrumb") do
     page.should have_content title
   end
-end  
+end
+
+Then /^I should see a seo friendly url with "(.+)"$/ do |url|
+  current_path.should == "/forums/#{url}"
+end

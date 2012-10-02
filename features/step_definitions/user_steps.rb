@@ -1,8 +1,3 @@
-Given /^Twitter User is logged in$/ do
-  visit new_user_session_path
-  click_link 'Sign in with Twitter'
-end
-
 ### UTILITY METHODS ###
 
 def create_visitor
@@ -58,6 +53,11 @@ def sign_in
 end
 
 ### GIVEN ###
+Given /^Twitter User is logged in$/ do
+  visit new_user_session_path
+  click_link 'Sign in with Twitter'
+end
+
 Given /^I am not logged in$/ do
   visit '/users/sign_out'
 end
@@ -69,6 +69,15 @@ end
 
 Given /^I exist as a user$/ do
   create_user
+end
+
+Given /^I exist as a banned user$/ do
+  create_user
+  @user.ban!
+end
+
+Given /^another user with my IP address is banned$/ do
+  FactoryGirl.create(:user, email: "banned@user.org", banned: true, last_sign_in_ip: "127.0.0.1")
 end
 
 Given /^I do not exist as a user$/ do
@@ -152,7 +161,17 @@ When /^I look at the list of users$/ do
   visit '/'
 end
 
+When /^I am banned$/ do
+  @user.ban!
+end
+
 ### THEN ###
+Then /^I should see that I am banned$/ do
+  within "#flash_alert" do
+    page.should have_content "banned until"
+  end
+end
+
 Then /^I should be signed in$/ do
   page.should have_content "Sign out"
   page.should_not have_content "Sign up"

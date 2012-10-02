@@ -11,7 +11,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   protected
 
   def login
-    sign_in_and_redirect user_from_social_media, :event => :authentication
+    user = user_from_social_media
+
+    redirect_banned_user(user) do
+      sign_in_and_redirect user, :event => :authentication
+    end
   end
 
   def user_from_social_media

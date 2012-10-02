@@ -1,21 +1,17 @@
 class User < ActiveRecord::Base
+  ROLES = %w[admin moderator contributor banned]
 
   has_many :conversations, foreign_key: :creator_id, inverse_of: :creator
   has_many :comments, inverse_of: :user
 
-  scope :role,  proc {|role| where(role: role)}
-
-  ROLES = %w[admin moderator contributor banned]
-
+  scope :role, proc {|role| where(role: role)}
+  scope :banned, where("banned is ?", true)
 
   validates :role, inclusion: {in: User::ROLES}
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
   def self.find_or_create_with_social_media_account(oauth_hash)
@@ -38,12 +34,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.ip_banned?(ip)
+    banned.pluck(:last_sign_in_ip).compact.uniq.include?(ip)
+  end
+
   def name
     nickname || email
   end
 
   def has_role?(role)
     self.role == role
+  end
+
+  def ban!(length = 1.week)
+    self.banned       = true
+    self.banned_at    = Time.now
+    self.banned_until = length.from_now.beginning_of_day
+    self.save
+  end
+
+  def unban!
+    self.banned       = false
+    self.banned_at    = nil
+    self.banned_until = nil
+    self.save
   end
 
 end

@@ -1,5 +1,9 @@
 Conclave::Application.routes.draw do
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, controllers: {
+    sessions:           "sessions",
+    omniauth_callbacks: "omniauth_callbacks"
+  }
+
   ActiveAdmin.routes(self)
 
   get "comments/index"

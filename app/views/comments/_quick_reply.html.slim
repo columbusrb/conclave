@@ -1,27 +1,33 @@
-a[id='bottom']
+a#bottom
+
 = link_to glyphicon('icon-chevron-up'), "#top", class: 'btn'
-- if can? :create, Comment
-  .quick_reply[id='quick_reply']
-    .page-header
-      h3 #{"Quick Reply"}
-      ul class='nav nav-tabs'
-        li class='active'
-          = link_to 'Reply', '#reply', data: {toggle: 'tab'}
-        li
-          = link_to 'Preview', '#preview', data: {toggle: 'tab'}
-      .tab-content
-        div id='reply' class='active tab-pane'
-            = simple_form_for [conversation, comment], :remote => true, :html => {:class => 'form-horizontal', :id => "quick_reply_form"} do |f|
-              = f.error_notification
-              .form-inputs
-                = f.simple_fields_for :comment do |cf|
-                  = cf.input :content, :required => true, :autofocus => false, :as => :text, :label => "Body", :input_html => {:class => "span10", :rows => '5'}
-                  = cf.simple_fields_for :uploaded_files do |uf|
-                    = uf.input :file, :as => :file, :required => false
-              .form-actions
-                = f.button :submit, "Submit Comment", :class => "btn btn-primary"
-        div id='preview' class='tab-pane'
-          = render 'comment_preview'
+
+#quick_reply.quick_reply
+  .page-header
+    h3 Quick Reply
+
+  ul.nav.nav-tabs
+    li.active= link_to 'Reply', '#reply', data: {toggle: 'tab'}
+    li= link_to 'Preview', '#preview', data: {toggle: 'tab'}
+
+  .tab-content
+    #reply.active.tab-pane
+      = simple_form_for [conversation, comment], :remote => true, :html => {:class => 'form-horizontal', :id => "quick_reply_form"} do |f|
+        = f.error_notification
+
+        .form-inputs
+          = f.input :content, :required => true, :autofocus => false, :as => :text, :label => "Body", :input_html => {:class => "span10", :rows => '5'}
+          = f.input :user_id, :input_html => {:value => current_user.id}, :as => :hidden
+
+          = f.simple_fields_for :uploaded_files do |uf|
+            = uf.input :file, :as => :file, :required => false
+
+        .form-actions
+          = f.button :submit, "Submit Comment", :class => "btn btn-primary"
+
+    #preview.tab-pane
+      = render 'comment_preview'
+
 coffee:
   $ ->
     window.quickReplyForm = new window.QuickReplyForm($('form#quick_reply_form'))

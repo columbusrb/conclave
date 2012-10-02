@@ -1,36 +1,22 @@
 class CommentsController < ApplicationController
+  respond_to :js
   before_filter :authenticate_user!, except: [:index]
+
   def index
-    @conversation = Conversation.find(params[:conversation_id])
-    @comments = @conversation.comments
-    @comment = Comment.new
+    @conversation  = Conversation.find(params[:conversation_id])
+    @comment       = @conversation.comments.build
+    @uploaded_file = @comment.uploaded_files.build
   end
 
   def new
     @conversation = Conversation.find(params[:conversation_id])
-    @comment = Comment.new
+    @comment      = @conversation.comments.build
   end
 
   def create
     @conversation = Conversation.find(params[:conversation_id])
-
-    @comment = @conversation.comments.new({
-      content: params[:comment][:comment][:content],
-      user_id: current_user.id
-    })
-
-    respond_to do |format|
-      if @comment.save
-        if params[:comment][:comment][:uploaded_files].present?
-          @uploaded_file = @comment.uploaded_files.create(params[:comment][:comment][:uploaded_files])
-        end
-
-        format.js
-        format.html { redirect_to conversation_comments_path(@conversation), notice: "Comment was added successfully" }
-      else
-        format.html { render action: "new" }
-      end
-    end
+    @comment      = @conversation.comments.create!(params[:comment])
+    render partial: "comments/comment", locals: {conversation: @conversation, comment: @comment}
   end
 
   def edit

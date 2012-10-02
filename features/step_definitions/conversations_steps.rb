@@ -69,7 +69,7 @@ end
 
 When /^I submit a reply to the conversation with the content "(.+)"$/ do |content|
   visit comments_index_path(conversation_id: @conversation.id)
-  fill_in "comment_comment_content", :with => content
+  fill_in "comment_content", :with => content
   click_button "Submit Comment"
 end
 

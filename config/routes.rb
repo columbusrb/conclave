@@ -8,7 +8,9 @@ Conclave::Application.routes.draw do
 
   get "comments/index"
 
-  resources :users, :only => [:show, :index]
+  resources :users, :only => [:show, :index] do
+    post :ban, on: :member
+  end
 
   resources :forums, :only => [:show, :index] do
     resources :conversations, :only => [:new, :create, :index]

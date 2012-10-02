@@ -104,3 +104,10 @@ Feature: Conversations
     When I edit the comment to say "The Pumpkin Spice Latte is by far the best"
     Then I the conversation should display the content "The Pumpkin Spice Latte is by far the best"
 
+  Scenario: Ban button bans a User
+    Given I am an admin
+    And a conversation with a comment
+    When I visit the conversation comments page
+    And I click the ban button
+    Then I should see that the user is banned
+

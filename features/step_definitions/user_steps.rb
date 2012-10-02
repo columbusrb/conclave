@@ -81,6 +81,11 @@ Given /^another user with my IP address is banned$/ do
   @banned_user.ban!
 end
 
+Given /^I am an admin$/ do
+  @user.role = "admin"
+  @user.save!
+end
+
 Given /^I do not exist as a user$/ do
   create_visitor
   delete_user

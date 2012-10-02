@@ -61,14 +61,14 @@ class User < ActiveRecord::Base
     self.banned       = true
     self.banned_at    = Time.now
     self.banned_until = length.from_now.beginning_of_day
-    self.save
+    self.save(:validate => false) # No validations, as Devise clobbers OmniAuth's lack of email
   end
 
   def unban!
     self.banned       = false
     self.banned_at    = nil
     self.banned_until = nil
-    self.save
+    self.save(:validate => false) # No validations, as Devise clobbers OmniAuth's lack of email
   end
 
   def ban_current?

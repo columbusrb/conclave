@@ -67,6 +67,10 @@ When /^I click the reply button on the forum show page$/ do
   click_link "Reply"
 end
 
+When /^I click the ban button$/ do
+  click_link "Ban"
+end
+
 When /^I submit a reply to the conversation with the content "(.+)"$/ do |content|
   visit comments_index_path(conversation_id: @conversation.id)
   fill_in "comment_content", :with => content
@@ -190,4 +194,8 @@ Then /^I should see a breadcrumb link with the conversation ID$/ do
   within("ul.breadcrumb") do
     page.should have_link @conversation.id.to_s
   end
+end
+
+Then /^I should see that the user is banned$/ do
+  page.should have_content "Banned"
 end

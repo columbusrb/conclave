@@ -53,7 +53,7 @@ When /^I create a new conversation on the forum$/ do
   visit forum_path(@forum)
   click_link "New Conversation"
   fill_in "conversation_title", with: "My Awesome Thread"
-  fill_in "conversation_comment_content", with: "My Awesome Body"
+  fill_in "Content", with: "My Awesome Body"
   click_button "Submit Conversation"
   @conversation = Conversation.last
 end

@@ -1,5 +1,5 @@
 class UploadedFile < ActiveRecord::Base
-  belongs_to :comment
+  belongs_to :comment, inverse_of: :uploaded_files
   validates_presence_of :comment
   attr_protected # Whitelist all attributes
 
@@ -8,9 +8,10 @@ class UploadedFile < ActiveRecord::Base
       storage: :s3,
       s3_credentials: AdminSetting.paperclip_settings,
       styles: {thumb: "100x100>"}
+
+    validates_attachment_size :file, less_than: 500.kilobytes,
+                                     unless: Proc.new {|m| m[:image].nil?}
   end
 
-  validates_attachment_size :file, less_than: 500.kilobytes,
-                                   unless: Proc.new {|m| m[:image].nil?}
 
 end

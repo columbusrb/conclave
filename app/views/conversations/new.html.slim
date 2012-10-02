@@ -1,11 +1,18 @@
 = render 'layouts/breadcrumbs'
+
 = simple_form_for [@forum, @conversation], :html => {:class => 'form-horizontal'} do |f|
   = f.error_notification
+
   .form-inputs
     = f.input :title, :required => true, :autofocus => true, :input_html => {:class => 'span9'}
-    = f.simple_fields_for :comment do |comment_form|
-      = comment_form.input :content, :as => :text, :required => true, :input_html => {:class => 'span9'}
-    = f.simple_fields_for :uploaded_files do |uf|
-      = uf.input :file, :as => :file, :required => false
+    = f.input :creator_id, :input_html => {:value => current_user.id}, :as => :hidden
+
+    = f.simple_fields_for :comments do |cf|
+      = cf.input :content, :as => :text, :required => true, :input_html => {:class => 'span9'}
+      = cf.input :user_id, :input_html => {:value => current_user.id}, :as => :hidden
+
+      = cf.simple_fields_for :uploaded_files do |uf|
+        = uf.input :file, :as => :file, :required => false
+
   .form-actions.span9
     = f.button :submit, "Submit Conversation", :class => "btn btn-primary"

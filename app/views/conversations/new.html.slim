@@ -3,9 +3,9 @@
   = f.error_notification
   .form-inputs
     = f.input :title, :required => true, :autofocus => true, :input_html => {:class => 'span9'}
-    = f.simple_fields_for @comment do |comment_form|
-      = comment_form.input :content, :required => true, :input_html => {:class => 'span9'}
+    = f.simple_fields_for :comment do |comment_form|
+      = comment_form.input :content, :as => :text, :required => true, :input_html => {:class => 'span9'}
     = f.simple_fields_for :uploaded_files do |uf|
-      = uf.input :file, :as => :file
+      = uf.input :file, :as => :file, :required => false
   .form-actions.span9
     = f.button :submit, "Submit Conversation", :class => "btn btn-primary"

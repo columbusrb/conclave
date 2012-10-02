@@ -1,12 +1,10 @@
-# Conclave
+# Conclave ![Travis Status](https://secure.travis-ci.org/columbusrb/conclave.png)
+
 Conclave is a web forum application that the Columbus Ruby Brigade is crafting. It is released under the MIT license.
 
 The project was started on 9/8/2012 and is under development. It is not recommended to use at this point.
 
 This project will start as a Rails application, but once approaching release we'll repackage as a gem that will integrate into an existing Rails application.
-
-## Status
-![Travis Status](https://secure.travis-ci.org/columbusrb/conclave.png)
 
 ## Goals
 1. Teach the beauty of the Ruby and Rails stack
@@ -29,8 +27,8 @@ This project will start as a Rails application, but once approaching release we'
 * Admin Panel - [ActiveAdmin][12]
 
 ## Services
-* [Travis CI Status][15]
-* User Avatars - [Avatars][16]
+* [Travis CI][15]
+* User Avatars - [Avatars.io][16]
 
 [1]:http://heroku.com
 [2]:http://www.ruby-lang.org/en/
@@ -61,6 +59,3 @@ All contributions are welcome! Please follow these steps for easy contributions:
     rake db:test:create
     rake db:test:clone
     rake
-
-## Object Graph
-![Object Graph](https://www.evernote.com/shard/s122/sh/5d5d37dd-abd4-4602-9eb7-652bb0714722/62beb326a3a156a88561eeaf77091fae/res/a2b9d534-2e89-4cc1-8869-f1cb0b86e4da/skitch.png)

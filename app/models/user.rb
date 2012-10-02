@@ -35,24 +35,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.ip_banned?(ip)
-    banned.pluck(:last_sign_in_ip).compact.uniq.include?(ip)
-  end
-
-  def self.ip_ban_over?(ip)
-    ban_ends = ip_banned_until(ip)
-    return true unless ban_ends.present?
-    ban_ends < Time.now
-  end
-
-  def self.ip_banned_until(ip)
-    banned.with_ip(ip).first.try(:banned_until)
-  end
-
-  def self.unban_ip!(ip)
-    banned.with_ip(ip).first.unban!
-  end
-
   def name
     nickname || email
   end
@@ -89,8 +71,12 @@ class User < ActiveRecord::Base
   end
 
   def ban_end_date
-    ends = banned_until || User.ip_banned_until(self.last_sign_in_ip)
-    ends.strftime('%m/%d/%Y') if ends.present?
+    ends_at = banned_until || ip_banned_until
+    ends_at.strftime('%m/%d/%Y') if ends_at.present?
+  end
+
+  def ip_banned_until
+    IPBanCheck.new(self.last_sign_in_ip).banned_until
   end
 
 end

@@ -38,8 +38,9 @@ class ApplicationController < ActionController::Base
   end
 
   def ip_ban_check(ip)
-    User.unban_ip!(ip) if User.ip_banned?(ip) && User.ip_ban_over?(ip)
-    User.ip_banned?(ip)
+    ip = IPBanCheck.new(ip)
+    ip.unban! if ip.banned? && ip.ban_over?
+    ip.banned?
   end
 
 end

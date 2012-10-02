@@ -32,3 +32,8 @@ Feature: Forums
     And I visit the forums index page
     Then I should be signed out
 
+  Scenario: SEO friendly URLS
+    Given a forum called "On Topic"
+    When I visit the forum
+    Then I should see a seo friendly url with "1-on-topic"
+

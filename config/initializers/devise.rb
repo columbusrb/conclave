@@ -209,13 +209,16 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
 
-  if defined?(AdminSetting)
+  # Asking if defined?(AdminSetting) fails here, so just try and fail if necessary
+  begin
     %w{twitter facebook}.each do |provider|
       if settings = AdminSetting.oauth_settings_for(provider)
         require "omniauth-#{provider}"
         config.omniauth provider, settings[:key], settings[:secret]
       end
     end
+  rescue
+    puts "AdminSettings not found. No OAuth or File Uploads."
   end
 
   # ==> Warden configuration

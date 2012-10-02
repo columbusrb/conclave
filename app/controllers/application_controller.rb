@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :redirect_banned_user
+  before_filter :check_for_banned_user
 
   def authenticate_admin_user!
     unless user_signed_in? && current_user.role == 'admin'
@@ -14,16 +14,28 @@ class ApplicationController < ActionController::Base
     current_user
   end
 
-  def redirect_banned_user(user=nil, &block)
+  def check_for_banned_user(user=nil, &block)
     user = current_user unless user.present?
+    redirect_banned_user(user) if user && (user_ban_check(user) || ip_ban_check(request.remote_ip))
+    block.call if block_given?
+  end
 
-    if user && (user.banned? || User.ip_banned?(request.remote_ip))
-      banned_until = user.banned_until
-      sign_out current_user if current_user.present?
-      redirect_to root_url, alert: "Sorry, but you or your IP address are banned until #{banned_until}"
-    else
-      block.call if block_given?
-    end
+  protected
+
+  def redirect_banned_user(user)
+    banned_until = user.banned_until
+    sign_out current_user if current_user.present?
+    redirect_to root_url, alert: "Sorry, but you or your IP address are banned until #{banned_until}"
+  end
+
+  def user_ban_check(user)
+    user.unban! if user.banned? && user.ban_over?
+    user.banned?
+  end
+
+  def ip_ban_check(ip)
+    User.unban_ip!(ip) if User.ip_banned?(ip) && User.ip_ban_over?(ip)
+    User.ip_banned?(ip)
   end
 
 end

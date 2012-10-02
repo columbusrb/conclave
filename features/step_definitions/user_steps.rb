@@ -27,7 +27,7 @@ end
 def create_user
   create_visitor
   delete_user
-  @user = FactoryGirl.create(:user, email: @visitor[:email])
+  @user = FactoryGirl.create(:user, email: @visitor[:email], last_sign_in_ip: "127.0.0.1")
 end
 
 def delete_user
@@ -77,7 +77,8 @@ Given /^I exist as a banned user$/ do
 end
 
 Given /^another user with my IP address is banned$/ do
-  FactoryGirl.create(:user, email: "banned@user.org", banned: true, last_sign_in_ip: "127.0.0.1")
+  @banned_user = FactoryGirl.create(:user, email: "banned@user.org", last_sign_in_ip: "127.0.0.1")
+  @banned_user.ban!
 end
 
 Given /^I do not exist as a user$/ do

@@ -30,7 +30,7 @@ This project will start as a Rails application, but once approaching release we'
 
 ## Services
 * [Travis CI Status][15]
-* User Avatars - [Gravatar][16]
+* User Avatars - [Avatars][16]
 
 [1]:http://heroku.com
 [2]:http://www.ruby-lang.org/en/
@@ -47,7 +47,7 @@ This project will start as a Rails application, but once approaching release we'
 [13]:http://rspec.info/
 [14]:http://cukes.info/
 [15]:http://travis-ci.org/#!/columbusrb/conclave
-[16]:http://gravatar.com
+[16]:http://avatars.io
 
 ## How to contribute
 All contributions are welcome! Please follow these steps for easy contributions:

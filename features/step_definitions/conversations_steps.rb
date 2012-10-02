@@ -168,9 +168,9 @@ Then /^I should see the date of the comment's creation$/ do
   end
 end
 
-Then /^I should see the gravatar for the comment's creator$/ do
+Then /^I should see the avatar for the comment's creator$/ do
   within("#comment_#{@comment.id}") do
-    page.should have_selector("img", :class => "gravatar")
+    page.should have_selector("img", :class => "avatar")
   end
 end
 

@@ -3,7 +3,7 @@
     .span2
       .row-fluid
         .thumbnail
-          = link_to gravatar(current_user, size: 200), user_path(current_user)
+          = link_to avatar(current_user, size: 200), user_path(current_user)
           = link_to current_user.email, user_path(current_user)
 
     .span10

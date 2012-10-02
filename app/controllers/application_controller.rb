@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def redirect_banned_user(user)
-    banned_until = user.banned_until
+    banned_until = user.ban_end_date
     sign_out current_user if current_user.present?
     redirect_to root_url, alert: "Sorry, but you or your IP address are banned until #{banned_until}"
   end

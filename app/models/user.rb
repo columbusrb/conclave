@@ -40,9 +40,13 @@ class User < ActiveRecord::Base
   end
 
   def self.ip_ban_over?(ip)
-    ban_ends = banned.with_ip(ip).first.try(:banned_until)
+    ban_ends = ip_banned_until(ip)
     return true unless ban_ends.present?
     ban_ends < Time.now
+  end
+
+  def self.ip_banned_until(ip)
+    banned.with_ip(ip).first.try(:banned_until)
   end
 
   def self.unban_ip!(ip)
@@ -82,6 +86,11 @@ class User < ActiveRecord::Base
 
   def ban_over?
     !ban_current?
+  end
+
+  def ban_end_date
+    ends = banned_until || User.ip_banned_until(self.last_sign_in_ip)
+    ends.strftime('%m/%d/%Y') if ends.present?
   end
 
 end

@@ -1,38 +1,32 @@
 doctype html
 html lang="en"
-  	head
-    	meta charset="utf-8"
-    	meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
-    	meta name="viewport" content="width=device-width, initial-scale=1.0"
-    	title
-			= content_for?(:title) ? yield(:title) : "Conclave"
-    	= stylesheet_link_tag "application", :media => "all"
+  head
+    meta charset="utf-8"
+      meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+      meta name="viewport" content="width=device-width, initial-scale=1.0"
+      title= content_for?(:title) ? yield(:title) : "Conclave"
+      = stylesheet_link_tag "application", :media => "all"
       = csrf_meta_tags
-  	body
-		div class="navbar navbar-fixed-top"
-	      div class="navbar-inner"
-	        div class="container"
-	          a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse"
-	            span class="icon-bar"
-	            span class="icon-bar"
-	            span class="icon-bar"
-	          = link_to 'Conclave', root_path, :class => 'brand'
-	          div class="container nav-collapse"
-    					= render 'layouts/navigation'
-		
-	    div class="container"
-		  = render 'layouts/messages'	
-	      div class="content"
-	        div class="row"
-	           div class="span12"
-	              = yield
-            
-          
-	      footer
-	        p &copy; CRB 2012
+      = javascript_include_tag "application"
 
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+            span.icon-bar
+              span.icon-bar
+              span.icon-bar
 
-	    /!-- Javascripts
-	    /!================================================== 
-	    /!-- Placed at the end of the document so the pages load faster
-	    = javascript_include_tag "application"
+            = link_to 'Conclave', root_path, :class => 'brand'
+
+            .container.nav-collapse
+              = render 'layouts/navigation'
+
+    .container
+      = render 'layouts/messages'
+
+      .content
+        .row
+          .span12
+            = yield

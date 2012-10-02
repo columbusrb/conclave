@@ -1,15 +1,19 @@
 = render 'layouts/breadcrumbs'
-a[id='top']
-.page-header
-  h1 #{@conversation.title}
 
-div[class='btn-group']
+a#top
+.page-header
+  h1= @conversation.title
+
+.btn-group
   = link_to glyphicon("icon-chevron-down"), '#bottom', class: 'btn'
+
   - if can? :create, Comment
     = link_to glyphicon('icon-share-alt', text: 'Quick'), '#quick_reply', class: 'btn', onclick: "$('textarea').focus();"
     = link_to glyphicon('icon-pencil', text: 'Reply'), new_conversation_comment_path(@conversation), class: "btn"
 
-div[class='conversation_comments' id='conversation_comments']
+#conversation_comments.conversation_comments
   = render @conversation.comments
 
-= render partial: "comments/quick_reply", locals: {conversation: @conversation, comment: @comment}
+- if can? :create, Comment
+  = render partial: "comments/quick_reply", locals: {conversation: @conversation, comment: @comment}
+

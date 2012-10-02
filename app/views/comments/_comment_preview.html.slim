@@ -1,15 +1,18 @@
-div[id="conversation_comment_preview"]
-  .row-fluid class='comment'
+#conversation_comment_preview
+  .row-fluid.comment
     .span2
       .row-fluid
         .thumbnail
           = link_to gravatar(current_user, size: 200), user_path(current_user)
           = link_to current_user.email, user_path(current_user)
+
     .span10
-      .row-fluid class='comment-header'
+      .row-fluid.comment-header
         .span8
           p #{Time.now} (#{time_ago_in_words(Time.now)} ago)
+
         .span2
           = link_to glyphicon('icon-edit', text: 'Edit'), '#', :class => "btn btn-mini"
+
       .row-fluid
-        div id='preview-text'
+        #preview-text

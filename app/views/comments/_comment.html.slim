@@ -1,20 +1,25 @@
-.row-fluid class='comment' id='comment_#{comment.id}'
-  .span2
-    .row-fluid
-      .thumbnail
-        = link_to_if(current_user, gravatar(comment.user, size: 200), user_path(comment.user))
-        = link_to_if(current_user, comment.user.name, user_path(comment.user))
-  .span10
-    .row-fluid class='comment-header'
-      .span8
-        p #{comment.created_at} (#{timeago(comment.created_at.utc)})
-      .span2 class='pull-right'
-        - if can?(:edit, comment)
-          = link_to glyphicon('icon-edit', text: 'Edit'), edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
-    .row-fluid
-      .comment_content
-        = markdown(comment.content)
+- unless comment.new_record?
+  .row-fluid.comment[id="comment_#{comment.id}"]
+    .span2
+      .row-fluid
+        .thumbnail
+          = link_to_if(current_user, gravatar(comment.user, size: 200), user_path(comment.user))
+          = link_to_if(current_user, comment.user.name, user_path(comment.user))
 
-        - comment.uploaded_files.each do |uf|
-          = link_to uf.file.url, target: '_blank' do
-            = image_tag uf.file(:thumb)
+    .span10
+      .row-fluid.comment-header
+        .span8
+          p #{comment.created_at} (#{timeago(comment.created_at.utc)})
+
+        .span2.pull-right
+          - if can?(:edit, comment)
+            = link_to glyphicon('icon-edit', text: 'Edit'), edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
+
+      .row-fluid
+        .comment_content
+          = markdown(comment.content)
+
+          - comment.uploaded_files.each do |uf|
+            = link_to uf.file.url, target: '_blank' do
+              = image_tag uf.file(:thumb)
+

@@ -14,22 +14,22 @@ class window.QuickReplyForm
     @previewArea.html(@converter.makeHtml(@body.val()))
 
   validate: (e) ->
-    if @isValid()
-      @save()
-    else
-      e.preventDefault()
-      e.stopPropagation()
-      @body.parents('.control-group').addClass('error')
+    e.preventDefault()
+    e.stopPropagation()
+
+    if @isValid() then @save() else @showError()
+
+  showError: ->
+    @body.parents('.control-group').addClass('error')
+
+  hideError: ->
+    @body.val('').parents('.control-group').removeClass('error')
 
   isValid: ->
     @body.val()
 
   save: ->
     $.post @url, @el.serialize(), (response) =>
-      @body.val('').parents('.control-group').removeClass('error')
+      @hideError()
       $("#conversation_comments").append(response)
       $("time.timeago").timeago()
-
-
-
-

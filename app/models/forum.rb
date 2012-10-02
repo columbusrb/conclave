@@ -4,4 +4,8 @@ class Forum < ActiveRecord::Base
 
   attr_accessible :title
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
 end

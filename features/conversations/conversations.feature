@@ -87,7 +87,6 @@ Feature: Conversations
     And I should see a breadcrumb link with the conversation ID
     And I should see a breadcrumb element titled "Reply"
 
-
   @javascript
   Scenario: Submit Quick Reply
     Given a forum and a conversation

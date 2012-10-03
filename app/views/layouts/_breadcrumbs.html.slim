@@ -1,43 +1,40 @@
-ul[class='breadcrumb']
+ul.breadcrumb
   - if controller_name == 'forums' && controller.action_name == 'index'
-    li[class='active'] Forums
+    li.active Forums
+
   - elsif controller_name == 'forums' && controller.action_name == 'show'
-    li #{link_to 'Forums', forums_path}
-    li 
-      span[class='divider']
-        | /
-      li[class='active'] #{@forum.title}
+    li= link_to 'Forums', forums_path
+    li
+      span.divider \
+      li.active= @forum.title
+
   - elsif controller_name == 'conversations' && controller.action_name == 'new'
-    li #{link_to 'Forums', forums_path}
-    li 
-      span[class='divider']
-        | /
-      li #{link_to @forum.title, forum_path(@forum)}
-    li 
-      span[class='divider']
-        | /
-      li[class='active'] New Conversation
+    li= link_to 'Forums', forums_path
+    li
+      span.divider \
+      li= link_to @forum.title, forum_path(@forum)
+    li
+      span.divider \
+      li.active New Conversation
+
   - elsif controller_name == 'comments' && controller.action_name == 'index'
-    li #{link_to 'Forums', forums_path}
+    li= link_to 'Forums', forums_path
     li
-      span[class='divider']
-        | /
-      li #{link_to @conversation.forum.title, forum_path(@conversation.forum)}
+      span.divider \
+      li= link_to @conversation.forum.title, forum_path(@conversation.forum)
     li
-      span[class='divider']
-        | /
-      li[class='active'] #{@conversation.id}
+      span.divider \
+      li.active= @conversation.title
+
   - elsif controller_name == 'comments' && controller.action_name == 'new'
-    li #{link_to 'Forums', forums_path}
+    li= link_to 'Forums', forums_path
     li
-      span[class='divider']
-        | /
-      li #{link_to @conversation.forum.title, forum_path(@conversation.forum)}
+      span.divider \
+      li= link_to @conversation.forum.title, forum_path(@conversation.forum)
     li
-      span[class='divider']
-        | /
-      li #{link_to @conversation.id, conversation_comments_path(@conversation)}
+      span.divider \
+      li= link_to @conversation.title, conversation_comments_path(@conversation)
     li
-      span[class='divider']
-        | /
-      li[class='active'] Reply
+      span.divider \
+      li.active Reply
+

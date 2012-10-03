@@ -1,5 +1,5 @@
 class Conversation < ActiveRecord::Base
-  belongs_to :forum, inverse_of: :conversations
+  belongs_to :forum, inverse_of: :conversations, counter_cache: true, touch: true
   belongs_to :creator, class_name: 'User', inverse_of: :conversations
   has_many :comments, dependent: :destroy, inverse_of: :conversation
   accepts_nested_attributes_for :comments

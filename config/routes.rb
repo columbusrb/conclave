@@ -20,9 +20,5 @@ Conclave::Application.routes.draw do
     resources :comments, :except => [:show]
   end
 
-  authenticated :user do
-    root :to => 'home#index'
-  end
-
   root :to => "forums#index"
 end

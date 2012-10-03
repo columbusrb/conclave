@@ -1,6 +1,20 @@
 = render 'layouts/breadcrumbs'
+
 table.table.table-striped
-  - @forums.each do |f|
-    tr id="forum_#{f.id}"
-      td
-        = link_to f.title, forum_path(f)
+  thead
+    tr
+      th Name
+      th Conversations
+      th Comments
+      th Last By
+      th Last At
+
+  tbody
+    - @forums.each do |f|
+      tr(id="forum_#{f.id}")
+        td= link_to f.title, forum_path(f)
+        td= f.conversations_count
+        td= f.total_comments
+        td= f.last_comment.try(:user).try(:name)
+        td= f.last_comment.try(:updated_at)
+

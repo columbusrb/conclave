@@ -6,27 +6,14 @@ html lang="en"
       meta name="viewport" content="width=device-width, initial-scale=1.0"
       title= content_for?(:title) ? yield(:title) : "Conclave"
       = stylesheet_link_tag "application", :media => "all"
-      = csrf_meta_tags
       = javascript_include_tag "application"
+      = csrf_meta_tags
 
   body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
-            span.icon-bar
-              span.icon-bar
-              span.icon-bar
-
-            = link_to 'Conclave', root_path, :class => 'brand'
-
-            .container.nav-collapse
-              = render 'layouts/navigation'
+    = render "shared/navbar"
 
     .container
       = render 'layouts/messages'
 
       .content
-        .row
-          .span12
-            = yield
+        = yield

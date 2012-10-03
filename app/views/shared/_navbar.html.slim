@@ -1,0 +1,12 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+        span.icon-bar
+          span.icon-bar
+          span.icon-bar
+
+        = link_to 'Conclave', root_path, :class => 'brand'
+
+        .container.nav-collapse
+          = render 'layouts/navigation'

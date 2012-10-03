@@ -1,0 +1,61 @@
+@import compass/css3
+@import compass/utilities/general/clearfix
+
+.comment-header
+  +border-radius(5px)
+  padding-top: 10px
+
+.comment
+  +border-radius(5px)
+  margin-top: 20px
+  background: whitesmoke
+  padding: 1em 0
+
+  &.banned
+    background: #DDD
+
+  .header-area
+    border-bottom: 1px solid #DDD
+
+    .avatar
+      img
+        margin-left: 1em
+        margin-bottom: 1em
+
+    .meta-area
+      p
+        line-height: 0.5em
+
+        &.name
+          padding-top: 0.75em
+          font-size: 1.3em
+
+        &.time
+          font-size: 0.8em
+
+    .available-actions
+      text-align: right
+      padding-top: 1em
+      padding-right: 1em
+
+      a
+        display: inline-block
+        margin-right: 0.5em
+
+        &:last-child
+          margin-right: 0
+
+
+  .content
+    padding: 1em
+
+  .images
+    padding: 1em
+
+#quick-reply-area
+  margin-top: 2em
+
+  textarea
+    width: 98%
+    height: 150px
+

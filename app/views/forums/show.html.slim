@@ -15,3 +15,5 @@ table.table.table-striped
         td= link_to(c.title, conversation_comments_path(c))
         td= pluralize(c.comments_count, "Comment")
         td= timeago c.try(:updated_at).try(:utc)
+        td
+        	.span1.label.label-info= "#{c.comments.unread_by(current_user).count} unread"

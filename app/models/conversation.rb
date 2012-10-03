@@ -4,6 +4,8 @@ class Conversation < ActiveRecord::Base
   has_many :comments, dependent: :destroy, inverse_of: :conversation
   accepts_nested_attributes_for :comments
 
+  acts_as_readable :on => :created_at
+
   attr_accessible :title, :forum_id, :comments_attributes, :creator_id
   validates_presence_of :forum, :title, :creator
 

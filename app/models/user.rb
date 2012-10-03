@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
 
   has_many :conversations, foreign_key: :creator_id, inverse_of: :creator
   has_many :comments, inverse_of: :user
+  acts_as_reader
 
   scope :role,  proc {|role| where(role: role)}
 

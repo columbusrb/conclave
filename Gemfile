@@ -21,6 +21,8 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 
+gem 'unread'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec'

@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!, except: [:index]
 
   def index
-    @conversation  = Conversation.find(params[:conversation_id])
+    @conversation  = Conversation.find(params[:conversation_id], include: {:comments => [:user, :uploaded_files]})
     @comment       = @conversation.comments.build
     @uploaded_file = @comment.uploaded_files.build
   end

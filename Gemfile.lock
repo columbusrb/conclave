@@ -1,13 +1,3 @@
-GIT
-  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 95d7a2c8dbe6d6146c17053be4e2b96f7dcbb88a
-  specs:
-    twitter-bootstrap-rails (2.1.3)
-      actionpack (>= 3.1)
-      less-rails (~> 2.2.3)
-      railties (>= 3.1)
-      therubyracer (>= 0.10.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -83,7 +73,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
-    commonjs (0.2.6)
     compass (0.12.2)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
@@ -161,12 +150,6 @@ GEM
     kgio (2.7.4)
     launchy (2.1.2)
       addressable (~> 2.3)
-    less (2.2.2)
-      commonjs (~> 0.2.6)
-    less-rails (2.2.3)
-      actionpack (>= 3.1)
-      less (~> 2.2.0)
-    libv8 (3.3.10.4)
     libwebsocket (0.1.3)
       addressable
     mail (2.4.4)
@@ -297,8 +280,6 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.6)
     temple (0.4.0)
-    therubyracer (0.10.2)
-      libv8 (~> 3.3.10)
     thor (0.14.6)
     tilt (1.3.3)
     timecop (0.5.2)
@@ -354,6 +335,5 @@ DEPENDENCIES
   slim-rails
   sqlite3
   timecop
-  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   unicorn

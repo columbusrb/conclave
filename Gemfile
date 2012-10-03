@@ -11,7 +11,6 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'activeadmin'
 gem 'meta_search', ">= 1.1.0.pre"
-gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem "foreman"
 gem "unicorn"
 gem "redcarpet"

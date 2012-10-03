@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121003134339) do
+ActiveRecord::Schema.define(:version => 20121003190519) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20121003134339) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "comments_count", :default => 0
+    t.integer  "watches_count",  :default => 0
   end
 
   add_index "conversations", ["creator_id"], :name => "index_conversations_on_creator_id"
@@ -101,5 +102,12 @@ ActiveRecord::Schema.define(:version => 20121003134339) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["provider", "uid"], :name => "index_users_on_provider_and_uid"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "watches", :force => true do |t|
+    t.integer "user_id"
+    t.integer "conversation_id"
+  end
+
+  add_index "watches", ["user_id", "conversation_id"], :name => "index_watches_on_user_id_and_conversation_id"
 
 end

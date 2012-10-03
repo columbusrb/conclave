@@ -98,3 +98,15 @@ Feature: Conversations
     And I click the ban button
     Then I should see that the user is banned
 
+  Scenario: Toggling watching a conversation
+    Given a forum and a conversation
+    And I am logged in
+    When I visit the conversation comments page
+    And I watch the conversation
+    Then I should see the conversation's index page
+    And I should see that I am watching the conversation
+    And I unwatch the conversation
+    Then I should see the conversation's index page
+    And I should see that I am not watching the conversation
+
+

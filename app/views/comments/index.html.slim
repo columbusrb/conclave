@@ -2,9 +2,18 @@
 
 a#top
 .page-header
-  h1= @conversation.title
+  h1
+    = @conversation.title
 
-#conversation_comments.conversation_comments
+    - if can? :create, Comment
+      small
+        - if current_user.watching?(@conversation)
+          = link_to "Unwatch This Conversation", conversation_watches_path(@conversation), method: :delete
+        - else
+          = link_to "Watch This Conversation", conversation_watches_path(@conversation), method: :post
+
+
+#conversation_comments
   = render @conversation.comments
 
 - if can? :create, Comment

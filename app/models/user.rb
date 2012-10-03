@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :conversations, foreign_key: :creator_id, inverse_of: :creator
   has_many :comments, inverse_of: :user
+  has_many :watches, inverse_of: :user
+  has_many :watched_conversations, through: :watches, source: :conversation
 
   scope :role, lambda {|role| where(role: role)}
   scope :banned, where("banned is ?", true)
@@ -77,6 +79,20 @@ class User < ActiveRecord::Base
 
   def ip_banned_until
     IPBanCheck.new(self.last_sign_in_ip).banned_until
+  end
+
+  def watch!(conversation)
+    self.watched_conversations << conversation
+    self.save
+  end
+
+  def unwatch!(conversation)
+    self.watched_conversations = watched_conversations.reject{|w| w == conversation}
+    self.save
+  end
+
+  def watching?(conversation)
+    self.watched_conversations.include?(conversation)
   end
 
 end

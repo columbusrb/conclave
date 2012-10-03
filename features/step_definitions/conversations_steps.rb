@@ -44,6 +44,10 @@ end
 #
 # When Steps
 #
+When /^I watch the conversation$/ do
+  click_link "Watch This Conversation"
+end
+
 When /^I click the "(.*?)" button$/ do |text|
   click_button text
 end
@@ -201,4 +205,16 @@ end
 
 Then /^I should see that the user is banned$/ do
   page.should have_css(".comment.banned")
+end
+
+Then /^I should see that I am watching the conversation$/ do
+  page.should have_content "Unwatch This Conversation"
+end
+
+Then /^I unwatch the conversation$/ do
+  click_link "Unwatch This Conversation"
+end
+
+Then /^I should see that I am not watching the conversation$/ do
+  page.should have_content "Watch This Conversation"
 end

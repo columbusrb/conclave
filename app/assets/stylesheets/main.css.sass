@@ -1,3 +1,6 @@
+@import compass/css3
+@import compass/utilities/general/clearfix
+
 .brand
   float: left
   padding-right: 8px
@@ -24,3 +27,17 @@ ul.nav li
 
 .container > .content
   margin-top: 80px
+
+h1 small
+  +clearfix
+
+  a
+    font-size: 0.6em
+    display: block
+    margin-right: 1em
+    float: right
+    margin-top: 2em
+
+    &:last-child
+      margin-right: 0
+

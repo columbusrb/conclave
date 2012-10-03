@@ -44,6 +44,9 @@ end
 #
 # When Steps
 #
+When /^I click the "(.*?)" button$/ do |text|
+  click_button text
+end
 
 When /^I visit the forum show page$/ do
   visit forum_path(@forum)
@@ -184,18 +187,18 @@ Then /^I should see a breadcrumb link with the forum title$/ do
   end
 end
 
-Then /^I should see a breadcrumb element with the conversation ID$/ do
+Then /^I should see a breadcrumb element with the conversation title$/ do
   within("ul.breadcrumb") do
-    page.should have_content @conversation.id.to_s
+    page.should have_content @conversation.title
   end
 end
 
-Then /^I should see a breadcrumb link with the conversation ID$/ do
+Then /^I should see a breadcrumb link with the conversation title$/ do
   within("ul.breadcrumb") do
-    page.should have_link @conversation.id.to_s
+    page.should have_link @conversation.title
   end
 end
 
 Then /^I should see that the user is banned$/ do
-  page.should have_content "Banned"
+  page.should have_css(".comment.banned")
 end

@@ -1,31 +1,36 @@
 - unless comment.new_record?
-  .row-fluid.comment[id="comment_#{comment.id}"]
-    .span2
-      .row-fluid
-        .thumbnail
-          = link_to_if(current_user, avatar(comment.user, size: 200), user_path(comment.user))
-          = link_to_if(current_user, comment.user.name, user_path(comment.user))
+  .comment[id="comment_#{comment.id}" class="#{'banned' if comment.user.banned?}"]
+    .header-area
+      .row
+        .avatar
+          .span1
+            = link_to user_path(comment.user) do
+              = avatar(comment.user, size: 50)
 
-    .span10
-      .row-fluid.comment-header
-        .span8
-          p #{comment.created_at} (#{timeago(comment.created_at.utc)})
+        .meta-area
+          .span8
+            p.name= link_to comment.user.name, user_path(comment.user)
+            p.time= timeago(comment.created_at.utc)
 
-        .span2.pull-right
-          - if can?(:edit, comment)
-            = link_to glyphicon('icon-edit', text: 'Edit'), edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
+        .span3
+          .available-actions
+            - if can?(:edit, comment)
+              = link_to glyphicon('icon-edit', text: 'Edit'), edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
 
-          - if comment.user.banned?
-            p.banned Banned
-          - else
-            - if can?(:ban, comment.user)
-              = link_to glyphicon('icon-edit', text: 'Ban'), ban_user_path(comment.user), :method => :post, :class => "btn btn-mini"
+            - unless comment.user.banned?
+              - if can?(:ban, comment.user)
+                = link_to glyphicon('icon-edit', text: 'Ban'), ban_user_path(comment.user), :method => :post, :class => "btn btn-mini"
 
-      .row-fluid
-        .comment_content
+    .row
+      .span12
+        .content
           = markdown(comment.content)
 
-          - comment.uploaded_files.each do |uf|
-            = link_to uf.file.url, target: '_blank' do
-              = image_tag uf.file(:thumb)
+    - comment.uploaded_files.each_slice(6).each do |group|
+      .row
+        .images
+          - group.each do |uf|
+            .span2
+              = link_to uf.file.url, target: '_blank' do
+                = image_tag uf.file(:thumb)
 

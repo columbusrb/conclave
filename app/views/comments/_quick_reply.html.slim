@@ -1,26 +1,19 @@
-a#bottom
-
-= link_to glyphicon('icon-chevron-up'), "#top", class: 'btn'
-
-#quick_reply.quick_reply
-  .page-header
-    h3 Quick Reply
-
+#quick-reply-area
   ul.nav.nav-tabs
     li.active= link_to 'Reply', '#reply', data: {toggle: 'tab'}
     li= link_to 'Preview', '#preview', data: {toggle: 'tab'}
 
   .tab-content
     #reply.active.tab-pane
-      = simple_form_for [conversation, comment], :remote => true, :html => {:class => 'form-horizontal', :id => "quick_reply_form"} do |f|
+      = simple_form_for [conversation, comment], :remote => true, :html => {:id => "quick_reply_form"} do |f|
         = f.error_notification
 
         .form-inputs
-          = f.input :content, :required => true, :autofocus => false, :as => :text, :label => "Body", :input_html => {:class => "span10", :rows => '5'}
+          = f.input :content, :required => true, :autofocus => false, :as => :text, :label => false
           = f.input :user_id, :input_html => {:value => current_user.id}, :as => :hidden
 
           = f.simple_fields_for :uploaded_files do |uf|
-            = uf.input :file, :as => :file, :required => false
+            = uf.input :file, :as => :file, :required => false, :label => false
 
         .form-actions
           = f.button :submit, "Submit Comment", :class => "btn btn-primary"

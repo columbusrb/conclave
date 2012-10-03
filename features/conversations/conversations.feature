@@ -50,11 +50,6 @@ Feature: Conversations
     When I visit the conversation comments page
     Then I should see a button labeled "Reply"
 
-  Scenario: Reply button takes user to reply form
-    Given a forum and a conversation
-    When I click the reply button on the forum show page
-    Then I should be on the new comment page for the conversation
-
   Scenario: Submitting a reply shows the reply on the conversation page
     Given a forum and a conversation
     When I submit a reply to the conversation with the content "Hello from Cucumber"
@@ -77,15 +72,7 @@ Feature: Conversations
     When I visit the conversation comments page
     Then I should see a breadcrumb link titled "Forums"
     And I should see a breadcrumb link with the forum title
-    And I should see a breadcrumb element with the conversation ID
-
-  Scenario: New Conversation Comment Breadcrumbs
-    Given a forum and a conversation
-    When I click the reply button on the forum show page
-    Then I should see a breadcrumb link titled "Forums"
-    And I should see a breadcrumb link with the forum title
-    And I should see a breadcrumb link with the conversation ID
-    And I should see a breadcrumb element titled "Reply"
+    And I should see a breadcrumb element with the conversation title
 
   @javascript
   Scenario: Submit Quick Reply

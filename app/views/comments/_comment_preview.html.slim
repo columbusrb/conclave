@@ -1,18 +1,18 @@
 #conversation_comment_preview
-  .row-fluid.comment
+  .row.comment
     .span2
-      .row-fluid
+      .row
         .thumbnail
           = link_to avatar(current_user, size: 200), user_path(current_user)
           = link_to current_user.email, user_path(current_user)
 
     .span10
-      .row-fluid.comment-header
+      .row.comment-header
         .span8
           p #{Time.now} (#{time_ago_in_words(Time.now)} ago)
 
         .span2
           = link_to glyphicon('icon-edit', text: 'Edit'), '#', :class => "btn btn-mini"
 
-      .row-fluid
+      .row
         #preview-text

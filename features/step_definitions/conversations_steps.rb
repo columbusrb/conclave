@@ -48,6 +48,10 @@ When /^I watch the conversation$/ do
   click_link "Watch This Conversation"
 end
 
+When /^I visit the my conversations page$/ do
+  click_link "My Conversations"
+end
+
 When /^I click the "(.*?)" button$/ do |text|
   click_button text
 end
@@ -67,6 +71,10 @@ end
 
 When /^I visit the conversation page$/ do
   visit conversation_path(@conversation)
+end
+
+When /^I go to my watched conversations page$/ do
+  click_link "Watched Conversations"
 end
 
 When /^I click the reply button on the conversation page$/ do
@@ -217,4 +225,16 @@ end
 
 Then /^I should see that I am not watching the conversation$/ do
   page.should have_content "Watch This Conversation"
+end
+
+Then /^I should see my watched conversations$/ do
+  @user.watched_conversations.each do |c|
+    page.should have_content c.title
+  end
+end
+
+Then /^I should see my conversation$/ do
+  @user.conversations.each do |c|
+    page.should have_content c.title
+  end
 end

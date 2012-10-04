@@ -21,6 +21,13 @@ Feature: Conversations
     When I create a new conversation on the forum
     Then I should see the conversation's index page
 
+  Scenario: Viewing my conversations
+    Given a forum and a conversation
+    And I am logged in
+    When I create a new conversation on the forum
+    When I visit the my conversations page
+    Then I should see my conversation
+
   Scenario: Conversation comments display on the conversation comments page
     Given a conversation with a comment
     When I visit the conversation page
@@ -108,5 +115,13 @@ Feature: Conversations
     And I unwatch the conversation
     Then I should see the conversation's index page
     And I should see that I am not watching the conversation
+
+  Scenario: Viewing watched conversations
+    Given a forum and a conversation
+    And I am logged in
+    When I visit the conversation page
+    And I watch the conversation
+    And I go to my watched conversations page
+    Then I should see my watched conversations
 
 

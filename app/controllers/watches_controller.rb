@@ -1,4 +1,9 @@
 class WatchesController < ApplicationController
+  before_filter :authenticate_user!
+
+  def index
+    @conversations = current_user.watched_conversations
+  end
 
   def create
     conversation = Conversation.find(params[:conversation_id])

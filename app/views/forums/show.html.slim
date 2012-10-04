@@ -8,10 +8,4 @@
       - if can? :create, Conversation
         = link_to "New Conversation", new_forum_conversation_path(@forum)
 
-table.table.table-striped
-  tbody
-    - @forum.conversations.each do |c|
-      tr[id="conversation_#{c.id}"]
-        td= link_to(c.title, conversation_path(c))
-        td= pluralize(c.comments_count, "Comment")
-        td= timeago c.try(:updated_at).try(:utc)
+= render "conversations/show"

@@ -15,4 +15,8 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def my_conversations
+    @conversations = current_user.conversations
+  end
+
 end

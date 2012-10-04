@@ -6,7 +6,7 @@ Conclave::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  get "comments/index"
+  resources :watches, :only => [:index]
 
   resources :users, :only => [:show, :index] do
     post :ban, on: :member
@@ -22,6 +22,8 @@ Conclave::Application.routes.draw do
     end
     resources :comments, :except => [:show]
   end
+
+  match "/my_conversations", to: "users#my_conversations", as: "my_conversations"
 
   root :to => "forums#index"
 end

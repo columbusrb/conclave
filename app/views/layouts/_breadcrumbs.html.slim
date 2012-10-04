@@ -17,7 +17,7 @@ ul.breadcrumb
       span.divider \
       li.active New Conversation
 
-  - elsif controller_name == 'comments' && controller.action_name == 'index'
+  - elsif controller_name == 'conversations' && controller.action_name == 'show'
     li= link_to 'Forums', forums_path
     li
       span.divider \
@@ -33,7 +33,7 @@ ul.breadcrumb
       li= link_to @conversation.forum.title, forum_path(@conversation.forum)
     li
       span.divider \
-      li= link_to @conversation.title, conversation_comments_path(@conversation)
+      li= link_to @conversation.title, conversation_path(@conversation)
     li
       span.divider \
       li.active Reply

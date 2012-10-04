@@ -10,10 +10,9 @@ html lang="en"
       = csrf_meta_tags
 
   body
-    = render "shared/navbar"
-
     .container
-      = render 'layouts/messages'
+      = render "shared/navbar"
 
       .content
+        = render 'layouts/messages'
         = yield

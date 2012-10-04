@@ -48,6 +48,10 @@ When /^I watch the conversation$/ do
   click_link "Watch This Conversation"
 end
 
+When /^I visit the my conversations page$/ do
+  click_link "My Conversations"
+end
+
 When /^I click the "(.*?)" button$/ do |text|
   click_button text
 end
@@ -65,12 +69,16 @@ When /^I create a new conversation on the forum$/ do
   @conversation = Conversation.last
 end
 
-When /^I visit the conversation comments page$/ do
-  visit conversation_comments_path(@conversation)
+When /^I visit the conversation page$/ do
+  visit conversation_path(@conversation)
 end
 
-When /^I click the reply button on the forum show page$/ do
-  visit conversation_comments_path(@conversation)
+When /^I go to my watched conversations page$/ do
+  click_link "Watched Conversations"
+end
+
+When /^I click the reply button on the conversation page$/ do
+  visit conversation_path(@conversation)
   click_link "Reply"
 end
 
@@ -79,19 +87,19 @@ When /^I click the ban button$/ do
 end
 
 When /^I submit a reply to the conversation with the content "(.+)"$/ do |content|
-  visit comments_index_path(conversation_id: @conversation.id)
+  visit conversation_path(@conversation)
   fill_in "comment_content", :with => content
   click_button "Submit Comment"
 end
 
 When /^I submit a quick reply with the content "(.+)"$/ do |content|
-  visit conversation_comments_path(@conversation)
+  visit conversation_path(@conversation)
   fill_in "comment_content", :with => content
   click_button "Submit Comment"
 end
 
 When /^I edit the comment to say "(.+)"$/ do |content|
-  visit conversation_comments_path(@conversation)
+  visit conversation_path(@conversation)
   within "#comment_#{@comment.id}" do
     click_link "Edit"
   end
@@ -109,7 +117,7 @@ end
 #
 
 Then /^I should see the conversation's index page$/ do
-  current_path.should eq conversation_comments_path(@conversation)
+  current_path.should eq conversation_path(@conversation)
 end
 
 Then /^I should see the conversation on the forum's show page$/ do
@@ -217,4 +225,16 @@ end
 
 Then /^I should see that I am not watching the conversation$/ do
   page.should have_content "Watch This Conversation"
+end
+
+Then /^I should see my watched conversations$/ do
+  @user.watched_conversations.each do |c|
+    page.should have_content c.title
+  end
+end
+
+Then /^I should see my conversation$/ do
+  @user.conversations.each do |c|
+    page.should have_content c.title
+  end
 end

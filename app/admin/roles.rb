@@ -10,7 +10,7 @@ ActiveAdmin.register User, as: 'Role' do
         redirect_to admin_role_path(@user)
       else
         render 'edit'
-      end      
+      end
     end
   end
 
@@ -24,7 +24,7 @@ ActiveAdmin.register User, as: 'Role' do
     f.inputs "Admin Details" do
       f.input :role, as: :select, collection: User::ROLES
     end
-    f.buttons
+    f.actions
   end
 
 

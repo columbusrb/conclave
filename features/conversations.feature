@@ -23,7 +23,7 @@ Feature: Conversations
 
   Scenario: Conversation comments display on the conversation comments page
     Given a conversation with a comment
-    When I visit the conversation comments page
+    When I visit the conversation page
     Then I should see the comment content on the page
     And I should see the date of the comment's creation
     And I should see the avatar for the comment's creator
@@ -47,7 +47,7 @@ Feature: Conversations
 
   Scenario: Reply button should show for existing conversation
     Given a forum and a conversation
-    When I visit the conversation comments page
+    When I visit the conversation page
     Then I should see a button labeled "Reply"
 
   Scenario: Submitting a reply shows the reply on the conversation page
@@ -57,7 +57,7 @@ Feature: Conversations
 
   Scenario: Quick Reply Form
     Given a forum and a conversation
-    When I visit the conversation comments page
+    When I visit the conversation page
     Then there will be a form at the bottom to submit a quick reply
 
   Scenario: New Conversation Breadcrumbs
@@ -69,7 +69,7 @@ Feature: Conversations
 
   Scenario: Existing Conversation Breadcrumbs
     Given a forum and a conversation
-    When I visit the conversation comments page
+    When I visit the conversation page
     Then I should see a breadcrumb link titled "Forums"
     And I should see a breadcrumb link with the forum title
     And I should see a breadcrumb element with the conversation title
@@ -82,7 +82,7 @@ Feature: Conversations
 
   Scenario: Comments I authored should have an edit button
     Given a forum and a conversation with 1 comments that I authored
-    When I visit the conversation comments page
+    When I visit the conversation page
     Then there will be an edit button on the comment
 
   Scenario: Edit a comment
@@ -94,14 +94,14 @@ Feature: Conversations
   Scenario: Ban button bans a User
     Given I am an admin
     And a conversation with a comment
-    When I visit the conversation comments page
+    When I visit the conversation page
     And I click the ban button
     Then I should see that the user is banned
 
   Scenario: Toggling watching a conversation
     Given a forum and a conversation
     And I am logged in
-    When I visit the conversation comments page
+    When I visit the conversation page
     And I watch the conversation
     Then I should see the conversation's index page
     And I should see that I am watching the conversation

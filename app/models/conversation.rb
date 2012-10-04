@@ -10,7 +10,12 @@ class Conversation < ActiveRecord::Base
 
   default_scope order('updated_at DESC')
 
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
+
   def original_author
     creator
   end
+
 end

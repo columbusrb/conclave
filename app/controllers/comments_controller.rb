@@ -1,12 +1,5 @@
 class CommentsController < ApplicationController
   respond_to :js
-  before_filter :authenticate_user!, except: [:index]
-
-  def index
-    @conversation  = Conversation.find(params[:conversation_id], include: {:comments => [:user, :uploaded_files]})
-    @comment       = @conversation.comments.build
-    @uploaded_file = @comment.uploaded_files.build
-  end
 
   def new
     @conversation = Conversation.find(params[:conversation_id])
@@ -27,7 +20,7 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update_attributes(params[:comment])
-      redirect_to conversation_comments_path(@comment.conversation), notice: "Comment was successfully updated"
+      redirect_to conversation_path(@comment.conversation), notice: "Comment was successfully updated"
     else
       render action: 'edit'
     end

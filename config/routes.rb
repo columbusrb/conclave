@@ -6,8 +6,6 @@ Conclave::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  get "comments/index"
-
   resources :users, :only => [:show, :index] do
     post :ban, on: :member
   end

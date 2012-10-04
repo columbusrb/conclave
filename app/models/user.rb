@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
       u.secret   = oauth_hash["credentials"]["secret"]
       u.token    = oauth_hash["credentials"]["token"]
       u.uid      = oauth_hash['uid']
+      u.role     = "contributor"
     end
   end
 

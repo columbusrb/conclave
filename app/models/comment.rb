@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
   has_many :uploaded_files, dependent: :destroy, inverse_of: :comment
   accepts_nested_attributes_for :uploaded_files
 
+  acts_as_readable :on => :created_at
+
   attr_accessible :conversation_id, :user_id, :content, :uploaded_files_attributes
   validates_presence_of :user, :conversation, :content
 

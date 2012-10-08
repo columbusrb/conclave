@@ -34,6 +34,10 @@ describe Comment do
     it "should know about its Uploaded Files" do
       @comment.respond_to?(:uploaded_files).should be_true
     end
+
+    it "should know about its redactor" do
+      @comment.respond_to?(:redactor.should be_true
+    end
   end
 
   describe "accessible attributes" do
@@ -53,6 +57,22 @@ describe Comment do
       user = FactoryGirl.create(:user)
       @comment.update_attributes({:user_id => user.id})
       @comment.user.should == user
+    end
+
+    it "should allow :redacted" do
+      @comment.update_attributes(redacted: true)
+      @comment.redacted.should == true
+    end
+
+    it "should allow :redacted_at" do
+      @comment.update_attributes(redacted_at: Time.now)
+      @comment.redacted_at.should be_present
+    end
+
+    it "should allow :redactor_id" do
+      user = FactoryGirl.create(:user)
+      @comment.update_attributes(redactor_id: user.id)
+      @comment.redactor_id.should eq user.id
     end
   end
 

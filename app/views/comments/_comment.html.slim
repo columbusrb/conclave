@@ -20,17 +20,29 @@
             - unless comment.user.banned?
               - if can?(:ban, comment.user)
                 = link_to glyphicon('icon-edit', text: 'Ban'), ban_user_path(comment.user), :method => :post, :class => "btn btn-mini"
+            - if can?(:manage, comment) && !comment.redacted
+              = link_to glyphicon('icon-remove-sign', text: 'Redact'), redact_conversation_comment_path(comment.conversation, comment), :method => :post, :class => "btn btn-mini"
+            - elsif can?(:mange, comment) && comment.redacted
+             = link_to glyphicon('icon-remove-sign', text: 'Unredact'), unredact_conversation_comment_path(comment.conversation, comment), :method => :post, :class => "btn btn-mini", title: 'Unredact'
+
 
     .row
       .span12
         .content
-          = markdown(comment.content)
+          - unless comment.redacted
+            = markdown(comment.content)
+          - else
+            i 
+              | Comment Redacted #{timeago comment.redacted_at} by #{comment.redactor.email} 
 
-    - comment.uploaded_files.each_slice(6).each do |group|
+    - if comment.redacted && comment.uploaded_files.present?
       .row
-        .images
-          - group.each do |uf|
-            .span2
-              = link_to uf.file.url, target: '_blank' do
-                = image_tag uf.file(:thumb)
-
+        i Files Redacted
+    - else
+      - comment.uploaded_files.each_slice(6).each do |group|
+        .row
+          .images
+            - group.each do |uf|
+              .span2
+                = link_to uf.file.url, target: '_blank' do
+                  = image_tag uf.file(:thumb)

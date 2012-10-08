@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :conversations, foreign_key: :creator_id, inverse_of: :creator
   has_many :comments, inverse_of: :user
+  has_many :redacted_comments, class_name: Comment, foreign_key: :redactor_id, inverse_of: :redactor
   has_many :watches, inverse_of: :user
   has_many :watched_conversations, through: :watches, source: :conversation
 

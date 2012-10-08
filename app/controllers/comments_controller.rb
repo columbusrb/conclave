@@ -25,4 +25,28 @@ class CommentsController < ApplicationController
       render action: 'edit'
     end
   end
+
+  def redact
+    @comment = Comment.find(params[:id])
+    @comment.redacted = true
+    @comment.redactor = current_user
+    @comment.redacted_at = Time.now.utc
+    if @comment.save
+      redirect_to conversation_path(@comment.conversation, anchor: "comment_#{@comment.id}"), notice: "Comment Redacted"
+    else
+      redirect_to conversation_path(@comment.conversation), notice: "Could not redact comment."
+    end
+  end
+
+  def unredact
+    @comment = Comment.find(params[:id])
+    @comment.redacted = false
+    @comment.redactor = nil
+    @comment.redacted_at = nil
+    if @comment.save
+      redirect_to conversation_path(@comment.conversation, anchor: "comment_#{@comment.id}"), notice: "Un-redacted comment"
+    else
+      redirect_to conversationPath(@comment.conversation), notice: "Could not unredact comment"
+    end
+  end
 end

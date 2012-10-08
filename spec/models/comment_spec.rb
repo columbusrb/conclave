@@ -36,7 +36,7 @@ describe Comment do
     end
 
     it "should know about its redactor" do
-      @comment.respond_to?(:redactor.should be_true
+      @comment.respond_to?(:redactor.should be_true)
     end
   end
 

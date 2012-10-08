@@ -20,7 +20,12 @@ Conclave::Application.routes.draw do
     resources :watches, :only => [:create] do
       delete :destroy, :on => :collection
     end
-    resources :comments, :except => [:show]
+    resources :comments, :except => [:show] do
+      member do
+        post 'redact'
+        post 'unredact'
+      end
+    end
   end
 
   match "/my_conversations", to: "users#my_conversations", as: "my_conversations"

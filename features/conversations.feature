@@ -81,6 +81,34 @@ Feature: Conversations
     And I should see a breadcrumb link with the forum title
     And I should see a breadcrumb element with the conversation title
 
+  Scenario: Redaction Button
+    Given a conversation with a comment
+    And I am an admin
+    When I visit the conversation page
+    Then I should see a "Redact" button on the comment
+
+  Scenario: Redacting a Comment
+    Given a conversation with a comment
+    And I am an admin
+    When I visit the conversation page
+    And I redact the comment
+    Then I should see that the comment is redacted
+
+  Scenario: Unredaction button
+    Given a conversation with a comment
+    And I am an admin
+    When I visit the conversation page
+    And I redact the comment
+    Then I should see a "Unredact" button on the comment
+
+  Scenario: Unredacting a Comment
+    Given a conversation with a comment
+    And I am an admin
+    When I visit the conversation page
+    And I redact the comment
+    And I unredact the comment
+    Then I should see the comment
+
   @javascript
   Scenario: Submit Quick Reply
     Given a forum and a conversation

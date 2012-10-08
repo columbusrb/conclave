@@ -40,6 +40,14 @@ Given /^a comment I authored with the content "(.*?)"$/ do |content|
   @comment = create(:comment, conversation: @conversation, content: content, user: @user)
 end
 
+Given /^a conversation with a redacted comment$/ do
+  @conversation = create(:conversation)
+  @comment = create(:comment)
+  @comment.redactor_id= @user.id
+  @comment.redacted_at= Time.now.utc
+  @comment.redacted= true
+  @comment.save
+end
 
 #
 # When Steps
@@ -236,5 +244,11 @@ end
 Then /^I should see my conversation$/ do
   @user.conversations.each do |c|
     page.should have_content c.title
+  end
+end
+
+Then /^I should see a "(.*?)" button on the comment$/ do |button_name|
+  within("#comment_#{@comment.id}") do
+    page.should have_link button_name
   end
 end

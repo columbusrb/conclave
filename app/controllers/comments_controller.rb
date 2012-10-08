@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
   respond_to :js
 
   def new
-    @conversation = Conversation.forind(params[:conversation_id])
+    @conversation = Conversation.find(params[:conversation_id])
     @comment      = @conversation.comments.build
   end
 

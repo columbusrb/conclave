@@ -1,10 +1,12 @@
 class ConversationsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: [:show]
 
   def show
     @conversation  = Conversation.find(params[:id], include: {:comments => [:user, :uploaded_files]})
-    @conversation.comments.each do |c| 
-      c.mark_as_read! :for => current_user
+    if current_user.present?
+      @conversation.comments.each do |c| 
+        c.mark_as_read! :for => current_user
+      end
     end
     @comment       = @conversation.comments.build
     @uploaded_file = @comment.uploaded_files.build

@@ -19,7 +19,6 @@ gem 'coffee-rails', '~> 3.2.1'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
-
 gem 'unread'
 
 group :development, :test do

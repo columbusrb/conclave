@@ -1,5 +1,4 @@
 class ForumsController < ApplicationController
-  before_filter :authenticate_user!
   def index
     @forums = Forum.all
   end

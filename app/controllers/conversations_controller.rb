@@ -3,6 +3,11 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation  = Conversation.find(params[:id], include: {:comments => [:user, :uploaded_files]})
+    if current_user.present?
+      @conversation.comments.each do |c| 
+        c.mark_as_read! :for => current_user
+      end
+    end
     @comment       = @conversation.comments.build
     @uploaded_file = @comment.uploaded_files.build
   end

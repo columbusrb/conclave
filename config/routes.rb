@@ -8,7 +8,7 @@ Conclave::Application.routes.draw do
 
   resources :watches, :only => [:index]
 
-  resources :users, :only => [:show, :index] do
+  resources :users, :only => [:show, :index, :update] do
     post :ban, on: :member
   end
 
@@ -29,6 +29,10 @@ Conclave::Application.routes.draw do
   end
 
   match "/my_conversations", to: "users#my_conversations", as: "my_conversations"
+
+  devise_scope :user do
+    match "/we_need_your_email", to: "omniauth_callbacks#email_pease", as: "email_pease"
+  end
 
   root :to => "forums#index"
 end

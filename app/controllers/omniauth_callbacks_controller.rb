@@ -8,13 +8,21 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     login
   end
 
+  def email_pease
+  end
+
   protected
 
   def login
     user = user_from_social_media
 
     check_for_banned_user(user) do
-      sign_in_and_redirect user, :event => :authentication
+      if user.email.present?
+        sign_in_and_redirect user, :event => :authentication
+      else
+        sign_in user
+        redirect_to email_pease_path
+      end
     end
   end
 

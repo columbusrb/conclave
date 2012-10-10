@@ -3,6 +3,12 @@ Feature: Sign in
   A user
   Should be able to sign in
 
+  Scenario: User has omniauth login but no email
+    Given Twitter User is logged in
+    Then I should see an email prompt
+    And I enter an email and a password
+    Then I should be on the root page
+
   Scenario: User is not signed up
     Given I do not exist as a user
     When I sign in with valid credentials

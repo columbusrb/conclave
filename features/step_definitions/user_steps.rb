@@ -53,6 +53,14 @@ def sign_in
 end
 
 ### GIVEN ###
+Given /^I click "(.*?)"$/ do |text|
+  click_link text
+end
+
+Given /^I am on the root page$/ do
+  visit "/"
+end
+
 Given /^Twitter User is logged in$/ do
   visit new_user_session_path
   click_link 'Sign in with Twitter'
@@ -230,6 +238,18 @@ Then /^I should see an account edited message$/ do
   page.should have_content "You updated your account successfully."
 end
 
+Then /^I should see an email prompt$/ do
+  page.should have_content "EMAIL!"
+end
 
+Then /^I enter an email and a password$/ do
+  fill_in "Email", :with => "yser@email.com"
+  fill_in "Password", :with => "sdaf666"
+  fill_in "Password confirmation", :with => "sdaf666"
+  click_button "Update User"
+end
 
+Then /^I should be on the root page$/ do
+  page.current_path.should == "/"
+end
 

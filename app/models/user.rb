@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def self.socially_create(oauth_hash)
-    User.create do |u|
+    user = User.new do |u|
       u.nickname = oauth_hash['info']['nickname']
       u.provider = oauth_hash['provider']
       u.secret   = oauth_hash["credentials"]["secret"]
@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
       u.uid      = oauth_hash['uid']
       u.role     = "contributor"
     end
+
+    user.save(validate: false)
+    user
   end
 
   def name

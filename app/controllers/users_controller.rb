@@ -19,4 +19,21 @@ class UsersController < ApplicationController
     @conversations = current_user.conversations
   end
 
+  def update
+    if params[:user][:email] && params[:user][:password] == params[:user][:password_confirmation]
+      current_user.email                 = params[:user][:email]
+      current_user.password              = params[:user][:password]
+      current_user.password_confirmation = params[:user][:password_confirmation]
+
+      if current_user.save
+        redirect_to root_url
+      else
+        flash[:alert] = current_user.errors.full_messages
+        render "devise/omniauth_callbacks/email_pease"
+      end
+    else
+      redirect_to email_pease_path
+    end
+  end
+
 end

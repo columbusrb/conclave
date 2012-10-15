@@ -3,6 +3,7 @@ Feature: Sign in
   A user
   Should be able to sign in
 
+  @buggery
   Scenario: User has omniauth login but no email
     Given Twitter User is logged in
     Then I should see an email prompt

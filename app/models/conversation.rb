@@ -11,6 +11,9 @@ class Conversation < ActiveRecord::Base
   validates_presence_of :forum, :title, :creator
 
   default_scope order('updated_at DESC')
+  scope :sticky, where(["sticky is ?", true])
+  scope :locked, where(["locked is ?", true])
+  scope :regular, where(["sticky is ? and locked is ?", false, false])
 
   def to_param
     "#{id}-#{title.parameterize}"

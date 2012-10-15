@@ -1,0 +1,18 @@
+ul.small
+  - if current_user
+    - if can? :create, Comment
+      - if current_user.watching?(conversation)
+        li= link_to "Unwatch This Conversation", conversation_watches_path(conversation), method: :delete
+      - else
+        li= link_to "Watch This Conversation", conversation_watches_path(conversation), method: :post
+
+    - if current_user && current_user.elevated?
+      - if conversation.sticky?
+        li= link_to "Unstick", unstick_conversation_path(conversation), method: 'put'
+      - else
+        li= link_to "Sticky", sticky_conversation_path(conversation), method: 'put'
+
+      - if conversation.locked?
+        li= link_to "Unlock", unlock_conversation_path(conversation), method: 'put'
+      - else
+        li= link_to "Lock", lock_conversation_path(conversation), method: 'put'

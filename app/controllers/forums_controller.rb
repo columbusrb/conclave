@@ -4,7 +4,8 @@ class ForumsController < ApplicationController
   end
 
   def show
-    @forum         = Forum.find(params[:id])
-    @conversations = @forum.conversations
+    @forum                 = Forum.find(params[:id])
+    @sticky_conversations  = @forum.conversations.sticky
+    @regular_conversations = @forum.conversations.regular
   end
 end

@@ -1,2 +1,7 @@
+- if @sticky_conversations.present?
+  table.table.table-striped
+    tbody= render @sticky_conversations
+
 table.table.table-striped
-  tbody= render @conversations
+  tbody= render @regular_conversations
+

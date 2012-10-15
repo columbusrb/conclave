@@ -248,7 +248,24 @@ Then /^I should see my conversation$/ do
 end
 
 Then /^I should see a "(.*?)" button on the comment$/ do |button_name|
-  within("#comment_#{@comment.id}") do
+  within("#comment_#{@comment.id} .available-actions") do
     page.should have_link button_name
   end
+end
+
+Then /^I should not see a "(.*?)" button on the comment$/ do |button_name|
+  within("#comment_#{@comment.id} .available-actions") do
+    page.should_not have_link button_name
+  end
+end
+
+Given /^a conversation with a comment posted by an Admin$/ do
+  @conversation = FactoryGirl.create(:conversation)
+  @comment      = FactoryGirl.create(:comment)
+  @admin        = FactoryGirl.create(:user)
+  @admin.role   = "admin"
+  @admin.save
+  @comment.user = @admin
+  @conversation.comments << @comment
+  visit conversation_path(@conversation)
 end

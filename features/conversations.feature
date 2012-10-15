@@ -133,6 +133,12 @@ Feature: Conversations
     And I click the ban button
     Then I should see that the user is banned
 
+  Scenario: Ban button does not appear for an Admin or Moderator
+    Given I am an admin
+    And a conversation with a comment posted by an Admin
+    When I visit the conversation page
+    Then I should not see a "ban" button on the comment
+
   Scenario: Toggling watching a conversation
     Given a forum and a conversation
     And I am logged in

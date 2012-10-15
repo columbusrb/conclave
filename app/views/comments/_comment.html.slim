@@ -18,7 +18,7 @@
               = link_to glyphicon('icon-edit', text: 'Edit'), edit_conversation_comment_path(comment.conversation, comment), :class => "btn btn-mini"
 
             - unless comment.user.banned?
-              - if can?(:ban, comment.user)
+              - if can?(:ban, comment.user) && !comment.user.elevated?
                 = link_to glyphicon('icon-edit', text: 'Ban'), ban_user_path(comment.user), :method => :post, :class => "btn btn-mini"
             - if can?(:manage, comment) && !comment.redacted
               = link_to glyphicon('icon-remove-sign', text: 'Redact'), redact_conversation_comment_path(comment.conversation, comment), :method => :post, :class => "btn btn-mini"

@@ -28,16 +28,24 @@ ul.nav li
 .container > .content
   margin-top: 60px
 
-h1 small
+h1 ul.small
   +clearfix
+  float: right
+  font-size: 11px
+  line-height: 1em
+  margin-top: 1.5em
 
-  a
-    font-size: 0.6em
-    display: block
-    margin-right: 1em
-    float: right
-    margin-top: 2em
+  li
+    display: inline-block
+    margin-right: 0.5em
+    padding-right: 0.5em
+    border-right: 1px solid #DDD
+
+    a
+      font-weight: normal
 
     &:last-child
       margin-right: 0
+      padding-right: 0
+      border-right-width: 0
 

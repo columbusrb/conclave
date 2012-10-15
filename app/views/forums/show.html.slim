@@ -4,8 +4,8 @@
   h1
     = @forum.title
 
-    small
+    ul.small
       - if can? :create, Conversation
-        = link_to "New Conversation", new_forum_conversation_path(@forum)
+        li= link_to "New Conversation", new_forum_conversation_path(@forum)
 
 = render "conversations/show"

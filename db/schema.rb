@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015154100) do
+ActiveRecord::Schema.define(:version => 20121015194929) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -58,10 +58,14 @@ ActiveRecord::Schema.define(:version => 20121015154100) do
     t.datetime "updated_at"
     t.integer  "comments_count", :default => 0
     t.integer  "watches_count",  :default => 0
+    t.boolean  "sticky",         :default => false
+    t.boolean  "locked",         :default => false
   end
 
   add_index "conversations", ["creator_id"], :name => "index_conversations_on_creator_id"
   add_index "conversations", ["forum_id"], :name => "index_conversations_on_forum_id"
+  add_index "conversations", ["locked"], :name => "index_conversations_on_locked"
+  add_index "conversations", ["sticky"], :name => "index_conversations_on_sticky"
 
   create_table "forums", :force => true do |t|
     t.string  "title"

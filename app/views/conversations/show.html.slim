@@ -4,13 +4,7 @@ a#top
 .page-header
   h1
     = @conversation.title
-
-    - if can? :create, Comment
-      small
-        - if current_user.watching?(@conversation)
-          = link_to "Unwatch This Conversation", conversation_watches_path(@conversation), method: :delete
-        - else
-          = link_to "Watch This Conversation", conversation_watches_path(@conversation), method: :post
+    = render partial: "conversations/header_actions", locals: {conversation: @conversation}
 
 
 #conversation_comments

@@ -17,6 +17,13 @@ Conclave::Application.routes.draw do
   end
 
   resources :conversations, :except => [:new, :create, :index] do
+    member do
+      put :sticky
+      put :unstick
+      put :lock
+      put :unlock
+    end
+
     resources :watches, :only => [:create] do
       delete :destroy, :on => :collection
     end

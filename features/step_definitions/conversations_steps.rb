@@ -276,3 +276,9 @@ Then /^I should see that there is new content$/ do
     page.should have_content "New"
   end
 end
+
+Then /^I should not see that there is new content$/ do
+  within("td.icons") do
+    page.should_not have_content "New"
+  end
+end

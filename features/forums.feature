@@ -42,4 +42,7 @@ Feature: Forums
     And I am logged in
     When I visit the forum
     Then I should see that there is new content
+    When I visit the conversation page
+    Then I visit the forum
+    Then I should not see that there is new content
 

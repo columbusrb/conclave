@@ -37,3 +37,9 @@ Feature: Forums
     When I visit the forum
     Then I should see a seo friendly url with "1-on-topic"
 
+  Scenario: Conversations with new content should be marked
+    Given a forum and a conversation with 10 comments
+    And I am logged in
+    When I visit the forum
+    Then I should see that there is new content
+

@@ -1,4 +1,6 @@
 class Conversation < ActiveRecord::Base
+  acts_as_readable :on => :updated_at
+
   belongs_to :forum, inverse_of: :conversations, counter_cache: true, touch: true
   belongs_to :creator, class_name: 'User', inverse_of: :conversations
   has_many :comments, dependent: :destroy, inverse_of: :conversation
@@ -17,5 +19,4 @@ class Conversation < ActiveRecord::Base
   def original_author
     creator
   end
-
 end

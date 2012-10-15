@@ -5,6 +5,8 @@ class ConversationsController < ApplicationController
     @conversation  = Conversation.find(params[:id], include: {:comments => [:user, :uploaded_files]})
     @comment       = @conversation.comments.build
     @uploaded_file = @comment.uploaded_files.build
+
+    @conversation.mark_as_read!(for: current_user) if current_user
   end
 
   def new

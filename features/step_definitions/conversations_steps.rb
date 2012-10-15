@@ -1,10 +1,22 @@
 #
 # Given Steps
 #
+Given /^a conversation with a comment posted by an Admin$/ do
+  @conversation = FactoryGirl.create(:conversation)
+  @comment      = FactoryGirl.create(:comment)
+  @admin        = FactoryGirl.create(:user)
+  @admin.role   = "admin"
+  @admin.save
+  @comment.user = @admin
+  @conversation.comments << @comment
+  visit conversation_path(@conversation)
+end
+
 Given /^a forum and a conversation$/ do
   @forum = create(:forum)
   @conversation = create(:conversation, forum: @forum)
 end
+
 Given /^a forum$/ do
   @forum = create(:forum)
 end
@@ -259,13 +271,8 @@ Then /^I should not see a "(.*?)" button on the comment$/ do |button_name|
   end
 end
 
-Given /^a conversation with a comment posted by an Admin$/ do
-  @conversation = FactoryGirl.create(:conversation)
-  @comment      = FactoryGirl.create(:comment)
-  @admin        = FactoryGirl.create(:user)
-  @admin.role   = "admin"
-  @admin.save
-  @comment.user = @admin
-  @conversation.comments << @comment
-  visit conversation_path(@conversation)
+Then /^I should see that there is new content$/ do
+  within("td.icons") do
+    page.should have_content "New"
+  end
 end

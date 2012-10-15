@@ -15,5 +15,4 @@ class Forum < ActiveRecord::Base
   def total_comments
     @total_comments ||= conversations.pluck(:comments_count).sum
   end
-
 end

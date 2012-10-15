@@ -2,3 +2,6 @@ tr[id="conversation_#{conversation.id}"]
   td= link_to(conversation.title, conversation_path(conversation))
   td= pluralize(conversation.comments_count, "Comment")
   td= timeago conversation.try(:updated_at).try(:utc)
+  td
+    - if current_user && conversation.unread?(current_user)
+      p New

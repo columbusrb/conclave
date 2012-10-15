@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  acts_as_reader
+
   ROLES = %w[admin moderator contributor banned]
 
   has_many :conversations, foreign_key: :creator_id, inverse_of: :creator

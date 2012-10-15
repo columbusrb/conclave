@@ -8,6 +8,5 @@ script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate
   - bundle exec rake db:test:prepare
   - RAILS_ENV=test bundle exec rake --trace db:seed
-  - bundle exec rspec
-  - cucumber
+  - bundle exec rake
 bundler_args: --binstubs=./bundler_stubs

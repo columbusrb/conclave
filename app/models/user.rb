@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :watched_conversations, through: :watches, source: :conversation
 
   scope :role, lambda {|role| where(role: role)}
-  scope :banned, where("banned is ?", true)
+  scope :banned, where({:banned => true})
   scope :with_ip, lambda{|ip| where("last_sign_in_ip = ?", ip)}
 
   validates :role, inclusion: {in: User::ROLES}

@@ -59,3 +59,78 @@ All contributions are welcome! Please follow these steps for easy contributions:
     rake db:test:create
     rake db:test:clone
     rake
+
+## How to install and run the app locally
+
+**Clone the repo locally**  
+Download and install a copy "clone" of the application on your own computer.  
+At the command prompt in your terminal window, type (or copy and paste) the repo address and hit enter.
+
+```bash
+$ https://github.com/columbusrb/conclave.git
+```
+
+This will create a new folder named conclave and download the app into that folder.  Once all of the files are downloaded, switch to the conclave folder.
+
+```bash
+$ cd conclave
+```
+**Install all of the required Gems**  
+At the command prompt in your terminal window, type the following command and hit enter.
+
+```bash
+[conclave]$ bundle install
+```
+
+**Run all of the migrations**  
+At the command prompt in your terminal window, type the following command and hit enter.
+
+```bash
+[conclave]$ rake db:migrate
+```
+
+**Generate initial User accounts and starter data**  
+At the command prompt in your terminal window, type the following command and hit enter.
+
+```bash
+[conclave]$ rake db:seed
+```
+
+This will create three User accounts. This first two are User accounts with the role "contributor." The third is a User account with the role "admin."  
+1. user@exmaple.com with "please" as the password  
+2. user2@example.com with "please" as the password  
+3. admin@example.com with "password" as the password  
+
+**Fire it up!**  
+Start the server on your computer.  
+At the command prompt in your terminal window, type the following command and hit enter.
+
+```bash
+[conclave]$ rails server
+```
+
+After you hit enter, you'll see something like this in the terminal window which lets you know the server is running. 
+
+```bash
+=> Booting WEBrick
+=> Rails 3.2.8 application starting in development on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+[2012-10-18 04:42:01] INFO  WEBrick 1.3.1
+[2012-10-18 04:42:01] INFO  ruby 1.9.2 (2012-04-20) [x86_64-darwin11.4.2]
+[2012-10-18 04:42:01] INFO  WEBrick::HTTPServer#start: pid=2838 port=3000
+```
+
+**Open the App**  
+Open a web browser, enter the web address for the local server and hit enter.
+
+```
+http://0.0.0.0:3000
+```
+**or**
+```
+http://localhost:3000
+```
+
+**Sign in to the App**  
+In the upper right-hand corner of the home page, click Sign in.  Use one of the usernames listed above to sign in.

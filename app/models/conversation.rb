@@ -12,8 +12,36 @@ class Conversation < ActiveRecord::Base
 
   default_scope order('updated_at DESC')
   scope :sticky, where(["sticky is ?", true])
-  scope :locked, where(["locked is ?", true])
-  scope :regular, where(["sticky is ? and locked is ?", false, false])
+  scope :closed, where(["closed is ?", true])
+  scope :regular, where(["sticky is ? and closed is ?", false, false])
+
+  def self.seed
+    forum = Forum.create(:title => "Seed forum")
+    user  = User.first
+
+    10.times do |i|
+      forum.conversations.create do |c|
+        c.title      = "Sticky Conversation #{i}"
+        c.creator_id = user.id
+        c.sticky     = true
+      end
+    end
+
+    100.times do |i|
+      forum.conversations.create do |c|
+        c.title      = "Conversation #{i}"
+        c.creator_id = user.id
+      end
+    end
+
+    40.times do |i|
+      forum.conversations.create do |c|
+        c.title      = "closed Conversation #{i}"
+        c.creator_id = user.id
+        c.closed     = true
+      end
+    end
+  end
 
   def to_param
     "#{id}-#{title.parameterize}"

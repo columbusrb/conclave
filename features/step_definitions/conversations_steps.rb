@@ -273,12 +273,12 @@ end
 
 Then /^I should see that there is new content$/ do
   within("td.icons") do
-    page.should have_content "New"
+    page.should have_css "b.icon-comment"
   end
 end
 
 Then /^I should not see that there is new content$/ do
   within("td.icons") do
-    page.should_not have_content "New"
+    page.should_not have_css "b.icon-comment"
   end
 end

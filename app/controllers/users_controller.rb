@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def my_conversations
-    @conversations = current_user.conversations
+    @conversations = current_user.conversations.page(params[:my])
   end
 
   def update

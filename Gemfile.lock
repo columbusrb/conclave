@@ -304,6 +304,7 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   jquery-rails
+  kaminari
   meta_search (>= 1.1.0.pre)
   omniauth
   omniauth-facebook

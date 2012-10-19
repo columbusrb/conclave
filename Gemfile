@@ -19,6 +19,7 @@ gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'unread'
+gem 'kaminari'
 
 group :development, :test do
   gem 'sqlite3'

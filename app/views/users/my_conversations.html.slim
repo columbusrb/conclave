@@ -1,4 +1,7 @@
 .page-header
   h1 My Conversations
 
-= render "conversations/show"
+table.table.table-striped
+  tbody= render @conversations
+
+= paginate @conversations, :param_name => :my

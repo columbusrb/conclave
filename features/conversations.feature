@@ -57,6 +57,12 @@ Feature: Conversations
     When I visit the conversation page
     Then I should see a link labeled "Reply"
 
+  Scenario: Reply link should not show closed conversation
+    Given a forum and a conversation
+    And the conversation is closed
+    When I visit the conversation page
+    Then I should not see a link labeled "Reply"
+
   Scenario: Submitting a reply shows the reply on the conversation page
     Given a forum and a conversation
     When I submit a reply to the conversation with the content "Hello from Cucumber"

@@ -61,6 +61,11 @@ Given /^a conversation with a redacted comment$/ do
   @comment.save
 end
 
+Given /^the conversation is closed$/ do
+  @conversation.closed = true
+  @conversation.save
+end
+
 #
 # When Steps
 #
@@ -144,8 +149,12 @@ Then /^I should see the conversation on the forum's show page$/ do
   page.should have_content @conversation.title
 end
 
-Then /^I should see a button labeled "(.+)"$/ do |label|
+Then /^I should see a link labeled "(.+)"$/ do |label|
   page.should have_link label
+end
+
+Then /^I should not see a link labeled "(.*?)"$/ do |label|
+  page.should_not have_link label
 end
 
 Then /^I should see the comment content on the page$/ do

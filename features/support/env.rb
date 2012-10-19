@@ -58,19 +58,6 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 Capybara.javascript_driver = :webkit
 
-Before '@oauth' do
-  AdminSetting.delete_all
-
-  AdminSetting.create do |a|
-    a.setting = "twitter_oauth_key"
-    a.value   = "LCOSViyT13oZQT07bJLqSQ"
-  end
-
-  AdminSetting.create do |a|
-    a.setting = "twitter_oauth_secret"
-    a.value   = "olERBpKi5pyxxuI5eqiwedoEAln5YBS6oN5CK5O9rc"
-  end
-end
 
 World(FactoryGirl::Syntax::Methods)
 World(Rails.application.routes.url_helpers)

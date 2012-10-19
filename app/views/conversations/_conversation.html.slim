@@ -3,4 +3,6 @@ tr[id="conversation_#{conversation.id}"]
   td= pluralize(conversation.comments_count, "Comment")
   td= timeago conversation.try(:updated_at).try(:utc)
   td.icons
-    = "New" if current_user && conversation.unread?(current_user)
+    = glyphicon("icon-comment", :title => 'Unread') if current_user && conversation.unread?(current_user)
+    = glyphicon("icon-star-empty", :title => 'Sticky') if conversation.sticky?
+    = glyphicon("icon-lock", :title => 'Closed') if conversation.closed?

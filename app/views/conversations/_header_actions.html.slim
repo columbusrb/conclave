@@ -12,7 +12,7 @@ ul.small
       - else
         li= link_to "Sticky", sticky_conversation_path(conversation), method: 'put'
 
-      - if conversation.locked?
+      - if conversation.closed?
         li= link_to "Unlock", unlock_conversation_path(conversation), method: 'put'
       - else
         li= link_to "Lock", lock_conversation_path(conversation), method: 'put'

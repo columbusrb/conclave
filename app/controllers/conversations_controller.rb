@@ -38,17 +38,17 @@ class ConversationsController < ApplicationController
   end
 
   def unlock
-    set_flag(:locked, false)
+    set_flag(:closed, false)
   end
 
   def lock
-    set_flag(:locked, true)
+    set_flag(:closed, true)
   end
 
   protected
 
   def set_flag(flag, boolean)
-    raise "Not so fast there, Sonny" unless flag.to_s =~ /^(locked|sticky)$/
+    raise "Not so fast there, Sonny" unless flag.to_s =~ /^(closed|sticky)$/
 
     if current_user.elevated?
       conversation = Conversation.find(params[:id])

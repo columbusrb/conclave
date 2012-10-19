@@ -319,6 +319,7 @@ DEPENDENCIES
   foreman
   heroku
   jquery-rails
+  kaminari
   meta_search (>= 1.1.0.pre)
   omniauth
   omniauth-facebook

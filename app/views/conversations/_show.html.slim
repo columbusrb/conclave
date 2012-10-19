@@ -1,7 +1,16 @@
 - if @sticky_conversations.present?
+  h3 Sticky
   table.table.table-striped
     tbody= render @sticky_conversations
 
+h3 Conversations
 table.table.table-striped
   tbody= render @regular_conversations
 
+= paginate @regular_conversations, :param_name => :regular
+
+h3 Closed
+table.table.table-striped
+  tbody= render @closed_conversations
+
+= paginate @closed_conversations, :param_name => :closed

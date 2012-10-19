@@ -2,7 +2,7 @@ class WatchesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @conversations = current_user.watched_conversations
+    @conversations = current_user.watched_conversations.page(params[:watched])
   end
 
   def create

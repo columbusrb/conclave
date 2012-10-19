@@ -14,7 +14,7 @@ Feature: Conversations
   Scenario: Show New Conversation Button
     Given a forum
     When I visit the forum show page
-    Then I should see a button labeled "New Conversation"
+    Then I should see a link labeled "New Conversation"
 
   Scenario: Create a conversation
     Given a forum
@@ -52,10 +52,10 @@ Feature: Conversations
     When I visit the forum show page
     Then I should see the date of the conversation's most recent comment
 
-  Scenario: Reply button should show for existing conversation
+  Scenario: Reply link should show for existing conversation
     Given a forum and a conversation
     When I visit the conversation page
-    Then I should see a button labeled "Reply"
+    Then I should see a link labeled "Reply"
 
   Scenario: Submitting a reply shows the reply on the conversation page
     Given a forum and a conversation

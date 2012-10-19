@@ -9,7 +9,8 @@ class Ability
         can :manage, :all
       else
         can :manage, Comment, user_id: user.id
-        can :create, [Conversation, Comment]
+        can :create, Conversation
+        can :create, Comment, :conversation => { :closed => false }
       end
     end
   end

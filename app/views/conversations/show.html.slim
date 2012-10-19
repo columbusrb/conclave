@@ -10,6 +10,9 @@ a#top
 #conversation_comments
   = render @conversation.comments
 
-- if can? :create, Comment
+- if can? :create, @comment
   = render partial: "comments/quick_reply", locals: {conversation: @conversation, comment: @comment}
-
+- elsif @conversation.closed?
+  #quick-reply-area
+    .alert.alert-info
+      |Comments have been closed on this conversation.

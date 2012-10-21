@@ -1,18 +1,18 @@
 #conversation_comment_preview
-  .row.comment
-    .span2
+  .comment
+    .header-area
       .row
-        .thumbnail
-          = link_to avatar(current_user, size: 200), user_path(current_user)
-          = link_to current_user.email, user_path(current_user)
+        .avatar
+          .span1
+            = link_to avatar(current_user, size: 50), user_path(current_user)
 
-    .span10
-      .row.comment-header
-        .span8
-          p #{Time.now} (#{time_ago_in_words(Time.now)} ago)
+        .meta-area
+          .span8
+            p.name= link_to current_user.email, user_path(current_user)
+            p (#{time_ago_in_words(Time.now)} ago)
+        .span3
 
-        .span2
-          = link_to glyphicon('icon-edit', text: 'Edit'), '#', :class => "btn btn-mini"
-
-      .row
-        #preview-text
+    .row
+      .span12
+        .content
+          #preview-text

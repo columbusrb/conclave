@@ -11,9 +11,9 @@ class Conversation < ActiveRecord::Base
   validates_presence_of :forum, :title, :creator
 
   default_scope order('updated_at DESC')
-  scope :sticky, where(["sticky is ?", true])
-  scope :closed, where(["closed is ?", true])
-  scope :regular, where(["sticky is ? and closed is ?", false, false])
+  scope :sticky, where(:sticky => true)
+  scope :closed, where(:closed => true)
+  scope :regular, where(:sticky => false, :closed => false)
 
   def self.seed
     forum = Forum.create(:title => "Seed forum")

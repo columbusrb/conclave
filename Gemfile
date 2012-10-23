@@ -32,6 +32,7 @@ group :development, :test do
   gem 'email_spec'
   gem 'timecop'
   gem 'quiet_assets'
+  gem 'taps'
 end
 
 group :production do

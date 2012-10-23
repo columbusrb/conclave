@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019161722) do
+ActiveRecord::Schema.define(:version => 20121023172916) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -62,7 +62,6 @@ ActiveRecord::Schema.define(:version => 20121019161722) do
     t.boolean  "closed",         :default => false
   end
 
-  add_index "conversations", ["closed"], :name => "index_conversations_on_locked"
   add_index "conversations", ["creator_id"], :name => "index_conversations_on_creator_id"
   add_index "conversations", ["forum_id"], :name => "index_conversations_on_forum_id"
   add_index "conversations", ["sticky"], :name => "index_conversations_on_sticky"

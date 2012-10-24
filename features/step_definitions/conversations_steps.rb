@@ -66,6 +66,12 @@ Given /^the conversation is closed$/ do
   @conversation.save
 end
 
+Given /^a forum called "(.*?)" with one conversation$/ do |forum_title|
+   @forum = create(:forum, title: forum_title)
+   @conversation = create(:conversation, forum: @forum)
+end
+
+
 #
 # When Steps
 #
@@ -136,6 +142,12 @@ When /^I go to the new conversation form$/ do
   visit new_forum_conversation_path(@forum)
 end
 
+
+When /^I move the conversation to "(.*?)"$/ do |other_forum|
+  visit edit_admin_conversation_path(@conversation)
+  select(other_forum, from: "conversation_forum_id")
+  click_button "Update Conversation"
+end
 
 #
 # Then Steps
@@ -290,4 +302,12 @@ Then /^I should not see that there is new content$/ do
   within("td.icons") do
     page.should_not have_css "b.icon-comment"
   end
+end
+
+Then /^I should see (\d+) conversations in "(.*?)"$/ do |conversation_count, forum_title|
+  forum_div_id = "forum_#{Forum.find_by_title(forum_title).id}"
+  within(:xpath, "//*[@id='#{forum_div_id}']/td[2]") do
+    page.should have_content conversation_count
+  end
+
 end

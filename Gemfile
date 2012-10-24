@@ -33,6 +33,7 @@ group :development, :test do
   gem 'timecop'
   gem 'quiet_assets'
   gem 'taps'
+  gem 'launchy'
 end
 
 group :production do

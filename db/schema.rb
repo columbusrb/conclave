@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20121023172916) do
     t.boolean  "closed",         :default => false
   end
 
+  add_index "conversations", ["closed"], :name => "index_conversations_on_closed"
   add_index "conversations", ["creator_id"], :name => "index_conversations_on_creator_id"
   add_index "conversations", ["forum_id"], :name => "index_conversations_on_forum_id"
   add_index "conversations", ["sticky"], :name => "index_conversations_on_sticky"

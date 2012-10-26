@@ -164,4 +164,10 @@ Feature: Conversations
     And I go to my watched conversations page
     Then I should see my watched conversations
 
+  Scenario: Pasting a github commit link creates a pretty link
+    Given a forum
+    When I create a conversation with the content "{{skord/conclave@f7eef43906dbd20510a88105d5bb56a5a299b1cb}}"
+    Then I should see friendly link to the commit
+
+
 

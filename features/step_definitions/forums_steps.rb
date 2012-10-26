@@ -4,6 +4,12 @@
 Given /^a forum called "(.+)"$/ do |title|
   @forum = create(:forum, title: title)
 end
+
+Given /^a forum and a conversation that is not closed$/ do
+  @forum = create(:forum)
+  @conversation = create(:conversation, forum: @forum)
+end
+
 #
 # When Step Definitions
 #
@@ -44,3 +50,8 @@ end
 Then /^I should see a seo friendly url with "(.+)"$/ do |url|
   current_path.should == "/forums/#{url}"
 end
+
+Then /^I should not see closed conversations$/ do
+  page.should_not have_css("#closed_conversations")
+end
+

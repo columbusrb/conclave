@@ -46,3 +46,8 @@ Feature: Forums
     Then I visit the forum
     Then I should not see that there is new content
 
+  Scenario: Hiding closed conversations when there are none
+    Given a forum and a conversation that is not closed
+    When I visit the forum
+    Then I should not see closed conversations
+

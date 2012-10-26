@@ -9,8 +9,10 @@ table.table.table-striped
 
 = paginate @regular_conversations, :param_name => :regular
 
-h3 Closed
-table.table.table-striped
-  tbody= render @closed_conversations
+- unless @closed_conversations.blank?
+  #closed_conversations
+    h3 Closed
+    table.table.table-striped
+      tbody= render @closed_conversations
 
-= paginate @closed_conversations, :param_name => :closed
+    = paginate @closed_conversations, :param_name => :closed

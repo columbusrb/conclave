@@ -15,5 +15,5 @@
 //= require bootstrap.min
 //= require jquery.timeago
 //= require showdown
+//= require prettify
 //= require_tree .
-

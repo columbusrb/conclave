@@ -16,5 +16,5 @@ table.table.table-striped
         td= f.conversations_count
         td= f.total_comments
         td= f.last_comment.try(:user).try(:name)
-        td= f.last_comment.try(:updated_at)
+        td= timeago f.last_comment.try(:updated_at)
 

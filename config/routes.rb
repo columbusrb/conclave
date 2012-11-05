@@ -1,4 +1,8 @@
 Conclave::Application.routes.draw do
+
+  resources :pages, only: [:index, :show]
+  # get ':id', to: 'pages#show', as: :page
+
   devise_for :users, controllers: {
     sessions:           "sessions",
     omniauth_callbacks: "omniauth_callbacks"

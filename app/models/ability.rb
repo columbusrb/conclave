@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, [Forum, Conversation, Comment]
+    can :read, [Forum, Conversation, Comment, Page]
 
     if user.present?
       if user.elevated?

@@ -1,6 +1,10 @@
 class ForumsController < ApplicationController
   def index
     @forums = Forum.all
+    unless current_user
+      @hero_title = AdminSetting.find_by_setting('hero_title') ? AdminSetting.find_by_setting('hero_title').value : 'Conclave'
+      @hero_desc = AdminSetting.find_by_setting('hero_desc') ? AdminSetting.find_by_setting('hero_desc').value : 'An Internet Forum'
+    end
   end
 
   def show

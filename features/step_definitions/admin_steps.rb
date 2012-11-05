@@ -1,5 +1,13 @@
 # Given steps
 
+Given /^a site hero title of "(.*?)"$/ do |hero_title|
+  create(:admin_setting, setting: 'hero_title', value: hero_title)
+end
+
+Given /^a site hero desc of "(.*?)"$/ do |hero_desc|
+  create(:admin_setting, setting: 'hero_desc', value: hero_desc)
+end
+
 # When Steps
 When /^I visit the admin forums page$/ do
   visit admin_forums_path

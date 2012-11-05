@@ -56,3 +56,17 @@ unless AdminSetting.find_by_setting('facebook_oauth_key')
     a.value   = ""
   end
 end
+
+unless AdminSetting.find_by_setting('hero_title')
+  AdminSetting.create do |a|
+    a.setting = 'hero_title'
+    a.value = 'Conclave'
+  end
+end
+
+unless AdminSetting.find_by_setting('hero_desc')
+  AdminSetting.create do |a|
+    a.setting = 'hero_desc'
+    a.value = 'A modern Internet Forum framework'
+  end
+end

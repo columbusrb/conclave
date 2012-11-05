@@ -51,3 +51,11 @@ Feature: Forums
     When I visit the forum
     Then I should not see closed conversations
 
+  Scenario: Seeing the site hero as a non-logged user
+    Given I am not logged in
+    And a site hero title of "Conclave"
+    And a site hero desc of "A modern forum"
+    When I visit the forums index page
+    Then I should see the site hero title "Conclave"
+    And I should see the site hero desc "A modern forum"
+

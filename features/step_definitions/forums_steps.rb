@@ -55,3 +55,14 @@ Then /^I should not see closed conversations$/ do
   page.should_not have_css("#closed_conversations")
 end
 
+Then /^I should see the site hero title "(.*?)"$/ do |hero_title|
+  within('div.hero-unit h1') do
+    page.should have_content hero_title
+  end
+end
+
+Then /^I should see the site hero desc "(.*?)"$/ do |hero_desc|
+  within('div.hero-unit p') do
+    page.should have_content hero_desc
+  end
+end

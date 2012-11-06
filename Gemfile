@@ -34,12 +34,6 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'taps'
   gem 'launchy'
-  if RUBY_PLATFORM.downcase.include?('darwin')
-    gem "ZenTest"
-    gem 'autotest-rails'
-    gem 'autotest-fsevent'
-    gem 'autotest-growl'
-  end
 end
 
 group :production do

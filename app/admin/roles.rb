@@ -20,7 +20,7 @@ ActiveAdmin.register User, as: 'Role' do
     default_actions
   end
 
-    form do |f|
+  form do |f|
     f.inputs "Admin Details" do
       f.input :role, as: :select, collection: User::ROLES
     end

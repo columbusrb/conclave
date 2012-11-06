@@ -34,6 +34,17 @@ describe Page do
       @page.permalink = 'NEW PERMALINK'
       @page.should_not be_valid
     end
+    it "should have a valid placement position" do
+      valid_placements = ['navbar', 'footer', '']
+      valid_placements.each do |valid_placement|
+        @page.placement = valid_placement
+        @page.should be_valid
+      end
+    end
+    it "should not have invalid placement positions" do
+      @page.placement = 'captainevilstomper'
+      @page.should_not be_valid
+    end
   end
 
   describe "accessible attributes" do
@@ -51,6 +62,20 @@ describe Page do
       new_content = 'Lorem Ipsum...'
       @page.update_attributes(content: new_content)
       @page.content.should eq new_content
+    end
+    it "should allow :placement" do
+      new_placement = 'footer'
+      @page.update_attributes(placement: new_placement)
+      @page.placement.should eq new_placement
+    end
+  end
+
+  describe "scopes" do
+    it "should respond to :in_footer" do
+      Page.respond_to?(:in_footer).should be_true
+    end
+    it "should respond to :in_navbar" do
+      Page.respond_to?(:in_navbar).should be_true
     end
   end
 end

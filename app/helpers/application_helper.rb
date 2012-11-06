@@ -34,4 +34,12 @@ module ApplicationHelper
     markdown_to_html = Redcarpet::Markdown.new(Redcarpet::Render::HTML, options)
     markdown_to_html.render(markdown_text).html_safe
   end
+
+  def navbar_pages
+    Page.in_navbar
+  end
+
+  def footer_link_set
+    Page.in_footer.collect {|page| link_to(page.name, page_path(page))}.join(' / ').html_safe
+  end
 end

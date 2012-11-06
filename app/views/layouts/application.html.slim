@@ -18,3 +18,12 @@ html lang="en"
       .content
         = render 'layouts/messages'
         = yield
+
+      #footer
+        .row
+          .span9
+            small.muted
+              = footer_link_set
+          .span3
+            small.pull-right.muted
+              #{link_to 'Conclave', 'http://github.com/columbusrb/conclave'} by #{link_to 'ColumbusRB', "http://columbusrb.com"}

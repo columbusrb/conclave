@@ -5,5 +5,6 @@ FactoryGirl.define do
     name "MyString"
     permalink "MyString"
     content "MyText"
+    placement ""
   end
 end

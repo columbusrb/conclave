@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105184601) do
+ActiveRecord::Schema.define(:version => 20121106153451) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -78,9 +78,11 @@ ActiveRecord::Schema.define(:version => 20121105184601) do
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "placement"
   end
 
   add_index "pages", ["permalink"], :name => "index_pages_on_permalink"
+  add_index "pages", ["placement"], :name => "index_pages_on_placement"
 
   create_table "read_marks", :force => true do |t|
     t.integer  "readable_id"

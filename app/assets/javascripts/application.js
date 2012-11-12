@@ -17,5 +17,4 @@
 //= require showdown
 //= require prettify
 //= require redactor-rails
-//= require turbolinks
 //= require_tree .

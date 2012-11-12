@@ -23,7 +23,6 @@ gem 'mini_magick'
 gem 'redactor-rails'
 gem 'pg'
 gem 'fog'
-gem 'turbolinks', ">= 0.5.1"
 
 
 group :development, :test do

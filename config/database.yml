@@ -3,7 +3,7 @@ development:
   encoding: unicode
   database: conclave_development
   pool: 5
-  username: conclave
+  username: postgres
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -29,7 +29,7 @@ test: &test
   encoding: unicode
   database: conclave_test
   pool: 5
-  username: conclave
+  username: postgres
   password:
 
 production:
@@ -37,7 +37,7 @@ production:
   encoding: unicode
   database: conclave_production
   pool: 5
-  username: conclave
+  username: postgres
   password:
 
 cucumber:
@@ -45,5 +45,5 @@ cucumber:
   encoding: unicode
   database: conclave_test
   pool: 5
-  username: conclave
+  username: postgres
   password:

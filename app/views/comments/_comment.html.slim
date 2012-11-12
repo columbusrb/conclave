@@ -30,19 +30,7 @@
       .span12
         .content
           - unless comment.redacted
-            = markdown(comment.content)
+            = raw comment.content
           - else
-            i 
-              | Comment Redacted #{timeago comment.redacted_at} by #{comment.redactor.email} 
-
-    - if comment.redacted && comment.uploaded_files.present?
-      .row
-        i Files Redacted
-    - else
-      - comment.uploaded_files.each_slice(6).each do |group|
-        .row
-          .images
-            - group.each do |uf|
-              .span2
-                = link_to uf.file.url, target: '_blank' do
-                  = image_tag uf.file(:thumb)
+            i
+              | Comment Redacted #{timeago comment.redacted_at} by #{comment.redactor.email}

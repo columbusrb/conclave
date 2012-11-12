@@ -35,7 +35,7 @@ Feature: Forums
   Scenario: SEO friendly URLS
     Given a forum called "On Topic"
     When I visit the forum
-    Then I should see a seo friendly url with "1-on-topic"
+    Then I should see a seo friendly url with "36-on-topic"
 
   Scenario: Conversations with new content should be marked
     Given a forum and a conversation with 10 comments

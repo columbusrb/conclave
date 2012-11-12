@@ -8,11 +8,8 @@
     = f.input :creator_id, :input_html => {:value => current_user.id}, :as => :hidden
 
     = f.simple_fields_for :comments do |cf|
-      = cf.input :content, :as => :text, :required => true, :input_html => {:class => 'span9'}
+      = cf.input :content, :as => :text, :required => true, :input_html => {:class => 'redactor', :rows => 120}
       = cf.input :user_id, :input_html => {:value => current_user.id}, :as => :hidden
-
-      = cf.simple_fields_for :uploaded_files do |uf|
-        = uf.input :file, :as => :file, :required => false
 
   .form-actions.span9
     = f.button :submit, "Submit Conversation", :class => "btn btn-primary"

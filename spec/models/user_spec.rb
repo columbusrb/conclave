@@ -123,6 +123,11 @@ describe User do
     it "should know about Conversations started by this user" do
       @user.conversations.should == []
     end
+
+    it "should know about its top contributors by comment count" do
+      create(:comment, user: @user)
+      User.top_contributors(1).should eq [@user]
+    end
   end
 
 end

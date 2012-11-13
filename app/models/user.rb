@@ -102,4 +102,14 @@ class User < ActiveRecord::Base
     self.watched_conversations.include?(conversation)
   end
 
+  def self.top_contributors(limit)
+    User.find_by_sql("SELECT users.*, count(comments.user_id)
+                      FROM public.users, public.comments
+                      WHERE users.id = comments.user_id
+                      GROUP BY users.id
+                      HAVING count(comments.user_id) > 0
+                      ORDER BY count(comments.user_id) DESC
+                      LIMIT #{limit}")
+  end
+
 end

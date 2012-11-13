@@ -14,6 +14,10 @@ describe Conversation do
       it "should know about any related Comments" do
         @conversation.comments.should == []
       end
+      it "should know its participant count" do
+        create(:comment, conversation: @conversation)
+        @conversation.participant_count.should eq 1
+      end
     end
 
     describe "validations" do

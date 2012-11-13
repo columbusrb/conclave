@@ -1,11 +1,10 @@
 = render 'layouts/breadcrumbs'
 
 .page-header
-  h1
-    = @forum.title
-
-    ul.small
-      - if can? :create, Conversation
-        li= link_to "New Conversation", new_forum_conversation_path(@forum)
 
 = render "conversations/show"
+.row-fluid
+  .span2.offset10
+    - if can? :create, Conversation
+      small
+        = link_to "New Conversation", new_forum_conversation_path(@forum), class: 'pull-right btn btn-mini btn-primary'

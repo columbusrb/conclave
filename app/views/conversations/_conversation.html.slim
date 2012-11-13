@@ -1,8 +1,18 @@
 tr[id="conversation_#{conversation.id}"]
   td= link_to(conversation.title, conversation_path(conversation))
-  td= pluralize(conversation.comments_count, "Comment")
-  td= timeago conversation.try(:updated_at).try(:utc)
+  td= conversation.creator.name
+  td= "Active #{timeago conversation.try(:updated_at).try(:utc)}".html_safe
   td.icons
-    = glyphicon("icon-comment", :title => 'Unread') if current_user && conversation.unread?(current_user)
-    = glyphicon("icon-star-empty", :title => 'Sticky') if conversation.sticky?
-    = glyphicon("icon-lock", :title => 'Closed') if conversation.closed?
+    span.badge
+      = conversation.comments_count
+    span.badge.badge-info
+      = conversation.participant_count
+    - if current_user && conversation.unread?(current_user)
+      span.label.label-success
+        = glyphicon("icon-envelope icon-white", :title => 'Unread')
+    - if conversation.sticky?
+      span.label.label-info
+        = glyphicon("icon-eye-open icon-white", :title => 'Sticky') if conversation.sticky?
+    - if conversation.closed?
+      span.label.label-inverse
+        = glyphicon("icon-lock icon-white", :title => 'Closed') if conversation.closed?

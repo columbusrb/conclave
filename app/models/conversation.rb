@@ -50,4 +50,8 @@ class Conversation < ActiveRecord::Base
   def original_author
     creator
   end
+
+  def participant_count
+    comments.count(:user_id, distinct: true)
+  end
 end

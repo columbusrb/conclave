@@ -305,13 +305,13 @@ end
 
 Then /^I should see that there is new content$/ do
   within("td.icons") do
-    page.should have_css "b.icon-comment"
+    page.should have_css "b.icon-envelope"
   end
 end
 
 Then /^I should not see that there is new content$/ do
   within("td.icons") do
-    page.should_not have_css "b.icon-comment"
+    page.should_not have_css "b.icon-envelope"
   end
 end
 

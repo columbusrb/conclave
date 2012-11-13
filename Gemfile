@@ -7,8 +7,6 @@ gem "slim-rails"
 gem 'simple_form'
 gem 'devise'
 gem 'cancan'
-gem 'paperclip'
-gem 'aws-sdk'
 gem 'activeadmin'
 gem 'meta_search', ">= 1.1.0.pre"
 gem "foreman"
@@ -20,6 +18,12 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'unread'
 gem 'kaminari'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'redactor-rails'
+gem 'pg'
+gem 'fog'
+
 
 group :development, :test do
   gem 'sqlite3'
@@ -34,10 +38,7 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'taps'
   gem 'launchy'
-end
-
-group :production do
-  gem 'pg'
+  gem 'capybara-webkit'
 end
 
 group :assets do

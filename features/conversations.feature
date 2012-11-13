@@ -115,7 +115,6 @@ Feature: Conversations
     And I unredact the comment
     Then I should see the comment
 
-  @javascript
   Scenario: Submit Quick Reply
     Given a forum and a conversation
     When I submit a quick reply with the content "Personally I think Apple is the best pie"
@@ -163,6 +162,13 @@ Feature: Conversations
     And I watch the conversation
     And I go to my watched conversations page
     Then I should see my watched conversations
+
+@javascript
+  Scenario: Replying with an image
+    Given a forum and a conversation
+    When I reply with an image
+    And I visit the conversation page
+    Then I should see the image
 
 
 

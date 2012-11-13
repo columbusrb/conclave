@@ -16,7 +16,7 @@ This project will start as a Rails application, but once approaching release we'
 * Ruby (1.9.2) - [Ruby][2]
 * Web Framework - [Rails][3]
 * Testing Frameworks - [RSpec][13] & [Cucumber][14]
-* Local Database - [SQLite][4]
+* Local Database - [PostgreSQL][4]
 * Templating language - [Slim][5]
 * Javascript Library - [jQuery][6]
 * CSS Framework - [Compass-Rails][7]
@@ -33,7 +33,7 @@ This project will start as a Rails application, but once approaching release we'
 [1]:http://heroku.com
 [2]:http://www.ruby-lang.org/en/
 [3]:http://rubyonrails.org/
-[4]:http://www.sqlite.org/
+[4]:http://www.postgresql.org/
 [5]:https://github.com/stonean/slim
 [6]:http://jquery.com/
 [7]:https://github.com/Compass/compass-rails
@@ -61,6 +61,18 @@ All contributions are welcome! Please follow these steps for easy contributions:
     rake
 
 ## How to install and run the app locally
+
+**Install PostgreSQL**
+
+
+If you're on a Mac, easy mode is installing via Homebrew:
+
+```bash
+brew install postgresql
+```
+
+Otherwise follow the distribution specific instructions on the [PostgreSQL Download Site](http://www.postgresql.org/download/). 
+
 
 **Clone the repo locally**  
 Download and install a copy "clone" of the application on your own computer.  

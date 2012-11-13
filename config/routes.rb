@@ -1,5 +1,7 @@
 Conclave::Application.routes.draw do
 
+  mount RedactorRails::Engine => '/redactor_rails'
+
   resources :pages, only: [:index, :show]
   # get ':id', to: 'pages#show', as: :page
 

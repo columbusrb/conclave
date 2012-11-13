@@ -1,15 +1,11 @@
 ul class='nav nav-tabs'
   li class='active'
     = link_to 'Edit', '#reply', data: {toggle: 'tab'}
-  li
-    = link_to 'Preview', '#preview', data: {toggle: 'tab'}
 .tab-content
   div id='reply' class='active tab-pane'
     = simple_form_for [@conversation, @comment], :html => {:class => 'form-horizontal'} do |f|
       = f.error_notification
       .form-inputs
-        = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => "span9"}
+        = f.input :content, :required => true, :autofocus => true, :label => "Body", :input_html => {:class => 'redactor', :rows => 120}
       .form-actions
         = f.button :submit, "Submit Comment", :class => "btn btn-primary"
-  div id='preview' class='tab-pane'
-    = render 'comment_preview'

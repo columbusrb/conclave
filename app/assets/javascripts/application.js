@@ -16,4 +16,5 @@
 //= require jquery.timeago
 //= require showdown
 //= require prettify
+//= require redactor-rails
 //= require_tree .

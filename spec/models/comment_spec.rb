@@ -31,10 +31,6 @@ describe Comment do
       @comment.respond_to?(:conversation).should be_true
     end
 
-    it "should know about its Uploaded Files" do
-      @comment.respond_to?(:uploaded_files).should be_true
-    end
-
     it "should know about its redactor" do
       @comment.respond_to?(:redactor).should be_true
     end

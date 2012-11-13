@@ -1,9 +1,10 @@
 language: ruby
 rvm:
   - 1.9.2
-  - 1.9.3
 env:
-  - DB=sqlite
+  - DB=postgres
+before_script:
+  - psql -c 'create database conclave_test;' -U postgres
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate
   - bundle exec rake db:test:prepare

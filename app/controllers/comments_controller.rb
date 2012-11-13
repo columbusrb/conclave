@@ -8,8 +8,12 @@ class CommentsController < ApplicationController
 
   def create
     @conversation = Conversation.find(params[:conversation_id])
-    @comment      = @conversation.comments.create!(params[:comment])
-    render partial: "comments/comment", locals: {conversation: @conversation, comment: @comment}
+    @comment      = @conversation.comments.build(params[:comment])
+    if @comment.save
+      redirect_to conversation_path(@conversation)
+    else
+      redirect_to conversation_path(@conversation)
+    end
   end
 
   def edit

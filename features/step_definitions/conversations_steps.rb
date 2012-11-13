@@ -149,6 +149,17 @@ When /^I move the conversation to "(.*?)"$/ do |other_forum|
   click_button "Update Conversation"
 end
 
+When /^I reply with an image$/ do
+  @image = 'findingdarby.jpeg'
+  path = File.join(::Rails.root,'spec/fixtures/findingdarby.jpeg')
+  visit conversation_path(@conversation)
+  click_link "Insert Image..."
+  attach_file("file", path )
+  click_button "Insert"
+  sleep 5
+  click_button "Submit"
+end
+
 #
 # Then Steps
 #
@@ -309,5 +320,8 @@ Then /^I should see (\d+) conversations in "(.*?)"$/ do |conversation_count, for
   within(:xpath, "//*[@id='#{forum_div_id}']/td[2]") do
     page.should have_content conversation_count
   end
+end
 
+Then /^I should see the image$/ do
+  page.should have_css("img[src$='#{@image}']")
 end

@@ -6,12 +6,6 @@ class ConversationsController < ApplicationController
     @comment       = @conversation.comments.build
 
     @conversation.mark_as_read!(for: current_user) if current_user
-
-    if stale?(last_modified: @conversation.updated_at.utc, etag: @conversation)
-      respond_to do |format|
-        format.html
-      end
-    end
   end
 
   def new

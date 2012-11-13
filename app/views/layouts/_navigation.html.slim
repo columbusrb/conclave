@@ -1,6 +1,4 @@
 ul.nav
-  li= link_to 'Forums', forums_path
-ul.nav
   - navbar_pages.each do |navbar_page|
     li= link_to navbar_page.name, page_path(navbar_page)
 

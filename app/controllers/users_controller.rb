@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @comments = @user.comments.unscoped.order('created_at DESC').limit(10)
+    @comments = Comment.unscoped.where('user_id = ?', @user.id).order('created_at DESC').limit(10)
   end
 
   def ban

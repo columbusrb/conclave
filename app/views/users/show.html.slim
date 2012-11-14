@@ -1,3 +1,55 @@
-p User: 
-= @user.email
-
+.row-fluid
+  .page-header
+    h1= @user.name
+.row-fluid
+  .span9.offset3
+    h3 Activity Stream
+.row-fluid
+  .span3
+    = avatar(@user, size: 220)
+    h5 Stats
+    table.table
+      tr
+        td Rank
+        td
+          span.label.label-info
+            = @user.rank.name
+      tr
+        td Comments
+        td
+          #comments-count.span.badge.badge-info
+            = @user.comments.count
+      tr
+        td Conversations
+        td
+          #conversations-count.span.badge.badge-info
+            = @user.conversations.count
+      tr
+        td Last Login
+        td= timeago @user.current_sign_in_at
+      - if @comments.present?
+        tr
+          td Last Comment
+          td= link_to @comments.last.conversation.title, conversation_path(@comments.last.conversation, anchor: "comment_#{@user.comments.last.id}")
+  .span9
+    #activity-stream
+      - if @comments.present?
+        - @comments.each do |comment|
+          .row-fluid
+            h6
+              = timeago comment.created_at
+              | ...
+            ul.breadcrumb
+              li= link_to(comment.conversation.forum.title, comment.conversation.forum)
+              li
+                span.divider \
+              li= link_to(comment.conversation.title, comment.conversation)
+              li
+                span.divider \
+              li= link_to "Comment: \##{comment.id}", conversation_path(comment.conversation, anchor: "comment_#{@user.comments.last.id}")
+            .comment
+              .content
+                = comment.content.html_safe
+          hr
+      - else
+        i User has not participated

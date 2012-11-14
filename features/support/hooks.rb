@@ -11,5 +11,11 @@ Before do
       "image"    => "twitter_avatar_url"
     }
   }
+
+  Rank.create(name: 'Initiate', comment_threshold: 0)
+  Rank.create(name: 'Padawan', comment_threshold: 10)
+  Rank.create(name: 'Jedi Knight', comment_threshold: 50)
+  Rank.create(name: 'Jedi Master', comment_threshold: 100)
+
 end
 

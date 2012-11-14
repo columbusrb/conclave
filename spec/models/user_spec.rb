@@ -44,6 +44,18 @@ describe User do
     user_with_duplicate_email.should_not be_valid
   end
 
+  it "should know its user rank" do
+    user = User.create!(@attr)
+    comment = create(:comment, user: user)
+    rank = create(:rank)
+    user.rank.should eq rank
+  end
+
+  it "should respond to :name" do
+    user = create(:user)
+    user.should respond_to(:name)
+  end
+
   describe "passwords" do
 
     before(:each) do

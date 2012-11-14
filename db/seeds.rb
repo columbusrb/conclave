@@ -70,3 +70,11 @@ unless AdminSetting.find_by_setting('hero_desc')
     a.value = 'A modern Internet Forum framework'
   end
 end
+
+if Rank.count == 0
+  puts "Creating default ranks"
+  Rank.create(name: 'Initiate', comment_threshold: 0)
+  Rank.create(name: 'Padawan', comment_threshold: 10)
+  Rank.create(name: 'Jedi Knight', comment_threshold: 50)
+  Rank.create(name: 'Jedi Master', comment_threshold: 100)
+end

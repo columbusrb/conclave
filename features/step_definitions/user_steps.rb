@@ -112,6 +112,18 @@ Given /^a site user with the role of "(.*?)"$/ do |role|
   @site_user.update_attribute(:role, role)
 end
 
+Given /^a user$/ do
+  @user = create_user
+end
+
+Given /^I have (\d+) comments in a conversation in a forum$/ do |comments_count|
+  @forum = create(:forum)
+  @conversation = create(:conversation, forum: @forum, creator: @user)
+  comments_count.to_i.times do
+    create(:comment, conversation: @conversation, user: @user)
+  end
+end
+
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor
@@ -177,6 +189,10 @@ end
 
 When /^I am banned$/ do
   @user.ban!
+end
+
+When /^I visit the user page$/ do
+  visit user_path(@user)
 end
 
 ### THEN ###
@@ -253,3 +269,28 @@ Then /^I should be on the root page$/ do
   page.current_path.should == "/"
 end
 
+Then /^I should be on the sign\-in page$/ do
+  page.current_path.should eq new_user_session_path
+end
+
+Then /^I should be on the user page$/ do
+  page.current_path.should eq user_path(@user)
+end
+
+Then /^I should see a comment count of (\d+)$/ do |comment_count|
+  within('#comments-count') do
+    page.should have_content comment_count
+  end
+end
+
+Then /^I should see a conversation count of (\d+)$/ do |conversation_count|
+  within('#conversations-count') do
+    page.should have_content conversation_count
+  end
+end
+
+Then /^I should see (\d+) items in my activity stream$/ do |arg1|
+  within('#activity-stream') do
+    page.should have_selector('.comment', count: 10)
+  end
+end

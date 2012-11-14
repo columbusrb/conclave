@@ -112,4 +112,8 @@ class User < ActiveRecord::Base
                       LIMIT #{limit}")
   end
 
+  def rank
+    Rank.where('comment_threshold <= ?', comments.count).limit(1).first
+  end
+
 end

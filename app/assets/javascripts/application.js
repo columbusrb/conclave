@@ -12,9 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
 //= require jquery.timeago
 //= require showdown
 //= require prettify
 //= require redactor-rails
+//= require bootstrap
+//= require bootstrap-dropdown
+//= require bootstrap-modal
+//= require bootstrap-tooltip
+//= require bootstrap-collapse
 //= require_tree .

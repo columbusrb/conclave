@@ -17,13 +17,15 @@
       tr
         td Comments
         td
-          #comments-count.span.badge.badge-info
-            = @user.comments.count
+          #comments-count
+            span.badge.badge-info
+              = @user.comments.count
       tr
         td Conversations
         td
-          #conversations-count.span.badge.badge-info
-            = @user.conversations.count
+          #conversations-count
+            span.badge.badge-info
+              = @user.conversations.count
       tr
         td Last Login
         td= timeago @user.current_sign_in_at

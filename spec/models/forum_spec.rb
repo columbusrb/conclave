@@ -9,6 +9,10 @@ describe Forum do
     @forum.should be_valid
   end
 
+  it "should respond to :participant_count" do
+    @forum.should respond_to(:participant_count)
+  end
+
   describe "validations" do
     it "should require a :title" do
       @forum.title = nil

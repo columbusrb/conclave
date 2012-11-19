@@ -15,4 +15,8 @@ class Forum < ActiveRecord::Base
   def total_comments
     @total_comments ||= conversations.pluck(:comments_count).sum
   end
+
+  def participant_count
+    User.joins(:comments => {:conversation => :forum}).where(:forums => {:id => Forum.first}).count(:distinct => true)
+  end
 end

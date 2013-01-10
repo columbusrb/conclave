@@ -1,2 +1,3 @@
 default: --no-source --format pretty -t ~@javascript
+everything: --no-source --format pretty
 wip: --tags @wip:3 --wip features

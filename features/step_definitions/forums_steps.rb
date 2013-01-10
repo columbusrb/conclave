@@ -48,7 +48,7 @@ Then /^I should see a breadcrumb element titled "(.+)"$/ do |title|
 end
 
 Then /^I should see a seo friendly url with "(.+)"$/ do |url|
-  current_path.should match \/forums\/\d+-#{url}\/
+  current_path.should match /\/forums\/\d+-#{url}/
 end
 
 Then /^I should not see closed conversations$/ do

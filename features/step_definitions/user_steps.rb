@@ -2,11 +2,11 @@
 
 def create_visitor
   @visitor ||= { :email => "example@example.com",
-    :password => "please", :password_confirmation => "please" }
+    :password => "please", :password_confirmation => "please", :nickname => "shatner" }
 end
 
 def create_site_user
-  @site_user ||= User.create({email: 'me@my.net', password: 'password', password_confirmation: 'password'})
+  @site_user ||= FactoryGirl.create(:user, email: 'me@my.net', password: 'password', password_confirmation: 'password')
 end
 
 def find_site_user
@@ -41,6 +41,7 @@ def sign_up
   fill_in "Email", :with => @visitor[:email]
   fill_in "Password", :with => @visitor[:password]
   fill_in "Password confirmation", :with => @visitor[:password_confirmation]
+  fill_in "Nickname", :with => @visitor[:nickname]
   click_button "Sign up"
   find_user
 end

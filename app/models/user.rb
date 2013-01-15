@@ -14,11 +14,12 @@ class User < ActiveRecord::Base
   scope :with_ip, lambda{|ip| where("last_sign_in_ip = ?", ip)}
 
   validates :role, inclusion: {in: User::ROLES}
+  validates :nickname, :presence => true, :uniqueness => true
 
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname
 
   def self.find_or_create_with_social_media_account(oauth_hash)
     user = find_by_provider_and_uid(oauth_hash['provider'], oauth_hash['uid'])

@@ -5,6 +5,7 @@ h2 Sign up
     = f.input :email, :required => true, :autofocus => true
     = f.input :password, :required => true
     = f.input :password_confirmation, :required => true
+    = f.input :nickname, :required => true, :hint => "This will appear as your display name on the forums."
   .form-actions
     = f.button :submit, "Sign up"
 = render "devise/shared/links"

@@ -16,7 +16,7 @@ Then /^I should see that the comment is redacted$/ do
   within("#comment_#{@comment.id}") do
     page.should have_content 'Comment Redacted'
     page.should have_content @comment.redacted_at
-    page.should have_content @user.email
+    page.should have_content @user.name
   end
 end
 
@@ -24,6 +24,6 @@ Then /^I should see the comment$/ do
   within("#comment_#{@comment.id}") do
     page.should have_content @comment.content
     page.should have_content @comment.created_at
-    page.should have_content @comment.user.email
+    page.should have_content @comment.user.name
   end
 end

@@ -8,12 +8,12 @@
 
 if User.count == 0
   puts 'SETTING UP DEFAULT USER LOGIN'
-  user = User.create! :email => 'user@example.com', :password => 'please', :password_confirmation => 'please'
+  user = User.create! :email => 'user@example.com', :password => 'please', :password_confirmation => 'please', :nickname => 'Dude1'
   puts 'New user created: ' << user.email
-  user2 = User.create! :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please'
+  user2 = User.create! :email => 'user2@example.com', :password => 'please', :password_confirmation => 'please', :nickname => 'Dude2'
   puts 'New user created: ' << user2.email
   puts "Setting up Admin Account"
-  admin = User.create!(:email => 'admin@example.com', :password => 'password')
+  admin = User.create!(:email => 'admin@example.com', :password => 'password', :nickname => 'Admin1')
   admin.update_attribute(:role, 'admin')
   puts "Admin created: #{admin.email}"
 end

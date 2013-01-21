@@ -15,34 +15,6 @@ class Conversation < ActiveRecord::Base
   scope :closed, where(:closed => true)
   scope :regular, where(:sticky => false, :closed => false)
 
-  def self.seed
-    forum = Forum.create(:title => "Seed forum")
-    user  = User.first
-
-    10.times do |i|
-      forum.conversations.create do |c|
-        c.title      = "Sticky Conversation #{i}"
-        c.creator_id = user.id
-        c.sticky     = true
-      end
-    end
-
-    100.times do |i|
-      forum.conversations.create do |c|
-        c.title      = "Conversation #{i}"
-        c.creator_id = user.id
-      end
-    end
-
-    40.times do |i|
-      forum.conversations.create do |c|
-        c.title      = "closed Conversation #{i}"
-        c.creator_id = user.id
-        c.closed     = true
-      end
-    end
-  end
-
   def to_param
     "#{id}-#{title.parameterize}"
   end

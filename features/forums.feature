@@ -59,3 +59,10 @@ Feature: Forums
     Then I should see the site hero title "Conclave"
     And I should see the site hero desc "A modern forum"
 
+  Scenario:
+    Given I exist as a user
+    And I am logged in
+    When I visit the root path
+    Then I should see my name in the navbar
+
+

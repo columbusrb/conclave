@@ -66,3 +66,9 @@ Then /^I should see the site hero desc "(.*?)"$/ do |hero_desc|
     page.should have_content hero_desc
   end
 end
+
+Then /^I should see my name in the navbar$/ do
+  within('.navbar') do
+    page.should have_content @user.name
+  end
+end

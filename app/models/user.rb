@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :nickname
 
+  recommends :conversations
+
   def self.find_or_create_with_social_media_account(oauth_hash)
     user = find_by_provider_and_uid(oauth_hash['provider'], oauth_hash['uid'])
 

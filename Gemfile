@@ -23,6 +23,9 @@ gem 'mini_magick'
 gem 'redactor-rails'
 gem 'pg'
 gem 'fog'
+gem 'sidekiq'
+gem 'sidekiq-middleware'
+gem 'recommendable'
 
 
 group :development, :test do

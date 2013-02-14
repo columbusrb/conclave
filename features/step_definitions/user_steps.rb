@@ -125,6 +125,7 @@ Given /^I have (\d+) comments in a conversation in a forum$/ do |comments_count|
   end
 end
 
+
 ### WHEN ###
 When /^I sign in with valid credentials$/ do
   create_visitor
@@ -179,7 +180,7 @@ When /^I sign in with a wrong password$/ do
 end
 
 When /^I edit my account details$/ do
-  click_link "Edit account"
+  click_link "edit-account-link"
   fill_in "Current password", :with => @visitor[:password]
   click_button "Update"
 end
@@ -193,6 +194,10 @@ When /^I am banned$/ do
 end
 
 When /^I visit the user page$/ do
+  visit user_path(@user)
+end
+
+When /^I visit my profile page$/ do
   visit user_path(@user)
 end
 

@@ -1,9 +1,5 @@
 .row-fluid
-  .page-header
-    h1= @user.name
-.row-fluid
-  .span9.offset3
-    h3 Activity Stream
+  h1= @user.name
 .row-fluid
   .span3
     = avatar(@user, size: 220)
@@ -33,6 +29,9 @@
         tr
           td Last Comment
           td= link_to @comments.last.conversation.title, conversation_path(@comments.last.conversation, anchor: "comment_#{@user.comments.last.id}")
+    -if current_user == @user
+      .well.account-edit
+        =link_to (glyphicon('icon-wrench') + ' Edit Account/Password').html_safe, edit_user_registration_path, id: 'edit-account-link'
   .span9
     #activity-stream
       - if @comments.present?

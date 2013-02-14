@@ -5,5 +5,6 @@ Feature: Edit User
 
     Scenario: I sign in and edit my account
       Given I am logged in
-      When I edit my account details
+      When I visit my profile page
+      And I edit my account details
       Then I should see an account edited message

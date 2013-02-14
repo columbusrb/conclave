@@ -11,7 +11,7 @@ ul.nav.pull-right
         li= link_to 'My Conversations', my_conversations_path
         li= link_to 'Watched Conversations', watches_path
         li.divider
-        li= link_to 'Edit account', edit_user_registration_path
+        li= link_to 'Your Account', user_path(current_user)
         li= link_to "Sign out", destroy_user_session_path
 
         - if admin_signed_in?

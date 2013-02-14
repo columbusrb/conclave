@@ -153,7 +153,7 @@ When /^I reply with an image$/ do
   @image = 'findingdarby.jpeg'
   path = File.join(::Rails.root,'spec/fixtures/findingdarby.jpeg')
   visit conversation_path(@conversation)
-  click_link "Insert Image..."
+  click_link "Insert Image"
   attach_file("file", path )
   click_button "Insert"
   sleep 5
@@ -241,7 +241,7 @@ end
 
 Then /^I should see the avatar for the comment's creator$/ do
   within("#comment_#{@comment.id}") do
-    page.should have_selector("img", :class => "avatar")
+    page.should have_selector("img.avatar" )
   end
 end
 

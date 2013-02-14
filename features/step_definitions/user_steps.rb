@@ -38,9 +38,9 @@ end
 def sign_up
   delete_user
   visit '/users/sign_up'
-  fill_in "Email", :with => @visitor[:email]
-  fill_in "Password", :with => @visitor[:password]
-  fill_in "Password confirmation", :with => @visitor[:password_confirmation]
+  fill_in "user_email", :with => @visitor[:email]
+  fill_in "user_password", :with => @visitor[:password]
+  fill_in "user_password_confirmation", :with => @visitor[:password_confirmation]
   fill_in "Nickname", :with => @visitor[:nickname]
   click_button "Sign up"
   find_user
@@ -48,8 +48,8 @@ end
 
 def sign_in
   visit '/users/sign_in'
-  fill_in "Email", :with => @visitor[:email]
-  fill_in "Password", :with => @visitor[:password]
+  fill_in "user_email", :with => @visitor[:email]
+  fill_in "user_password", :with => @visitor[:password]
   click_button "Sign in"
 end
 
@@ -260,9 +260,9 @@ Then /^I should see an email prompt$/ do
 end
 
 Then /^I enter an email and a password$/ do
-  fill_in "Email", :with => "yser@email.com"
-  fill_in "Password", :with => "sdaf666"
-  fill_in "Password confirmation", :with => "sdaf666"
+  fill_in "user_email", :with => "yser@email.com"
+  fill_in "user_password", :with => "sdaf666"
+  fill_in "user_password_confirmation", :with => "sdaf666"
   click_button "Update User"
 end
 
